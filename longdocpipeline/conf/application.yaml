@@ -1,0 +1,28 @@
+gigachat:
+  base-url: https://gigachat.devices.sberbank.ru/api/v1
+  auth-url: https://ngw.devices.sberbank.ru:9443/api/v2/oauth
+  credentials: ""
+  scope: GIGACHAT_API_CORP
+  model: GigaChat-Pro
+  timeout: 900
+  verify-ssl-certs: False
+  profanity-check: False
+  verbose: True
+  connection-pool:
+    max-keepalive-connections: 10
+    max-connections: 1
+    keepalive-expiry: 10
+
+token-limit: 32768
+
+preprocessing:
+  split-mode: 'sentence'
+
+task-types:
+  - 'general'
+  - 'qa'
+  - 'sum'
+  - 'translation'
+  - 'sum_conference'
+
+stand-type: external

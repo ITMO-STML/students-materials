@@ -1,0 +1,20 @@
+{
+  "logic": {
+    "task": "sum",
+    "algo": "refine"
+  },
+  "preprocessing": {
+    "split_mode": "sentence",
+    "chunk_size": {
+      "current": 4096
+    },
+    "overlap": {
+      "current": 1024
+    }
+  },
+  "prompts": {
+    "system_prompt": "system_prompt general/refine/basic",
+    "oneshot_prompt": "oneshot_prompt general/refine/basic"
+  },
+  "file_name": "sample.txt"
+}

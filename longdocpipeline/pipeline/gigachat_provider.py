@@ -1,0 +1,5 @@
+from lib.gigachain_extension.gigachat_ext_factory import GigaChatExtFactory
+
+from longdocpipeline.config.application_properties import application_properties
+
+gigachat = GigaChatExtFactory(application_properties.gigachat).create_gigachat()

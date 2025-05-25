@@ -1,0 +1,20 @@
+{
+  "logic": {
+    "task": "general",
+    "algo": "refine"
+  },
+  "preprocessing": {
+    "split_mode": "sentence",
+    "chunk_size": {
+      "current": 22289
+    },
+    "overlap": {
+      "current": 1024
+    }
+  },
+  "prompts": {
+    "system_prompt": "Ты -- AI-ассистент, который читает текст и выполняет задание по нему. В ответе приводи только результат выполнения задания.",
+    "oneshot_prompt": "Выполни задание по тексту.\nЗадание: {query}\nТекст: {context}"
+  },
+  "file_name": "sample.txt"
+}

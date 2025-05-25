@@ -1,0 +1,25 @@
+version: 1
+disable_existing_loggers: False
+
+formatters:
+  generic:
+    format: '%(asctime)s.%(msecs)03d [%(process)d] [%(threadName)s] [%(thread)d] [%(levelname)s] [%(name)s] %(message).1000s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: generic
+
+loggers:
+  root:
+    level: INFO
+    handlers: [ console ]
+  httpcore.connection:
+    level: WARN
+  httpcore.http11:
+    level: WARN
+  httpx:
+    level: WARN
+  multipart.multipart:
+    level: WARN
