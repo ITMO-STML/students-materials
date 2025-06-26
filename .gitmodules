@@ -1,0 +1,6 @@
+[submodule "/workspaces/students-materials/Дмитрий Дутов/AAE"]
+	path = /workspaces/students-materials/Дмитрий Дутов/AAE
+	url = https://github.com/Maunberg/dsp.git
+[submodule "Дмитрий Дутов/НИР/SR"]
+	path = Дмитрий Дутов/НИР/SR
+	url = https://github.com/Maunberg/SR.git
