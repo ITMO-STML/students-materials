@@ -16,8 +16,8 @@ serpapi_key = st.text_input("🔐 Введите SerpAPI API-ключ", type="pa
 # Выбор моделей для агентов
 with st.expander("⚙️ Настройка моделей агентов"):
     models = {
-        "analyst": st.selectbox("🧠 Analyst", ["phi4:14b", "deepseek-r1:8b", "llama3:8b", "mistral-nemo:latest"], index=0),
-        "writer": st.selectbox("✍️ Writer", ["phi4:14b", "deepseek-r1:8b", "llama3:8b", "mistral-nemo:latest"], index=0),
+        "analyst": st.selectbox("🧠 Analyst", ["deepseek-r1:8b", "phi4:14b", "llama3:8b", "mistral-nemo:latest"], index=0),
+        "writer": st.selectbox("✍️ Writer", ["deepseek-r1:8b", "phi4:14b", "llama3:8b", "mistral-nemo:latest"], index=0),
         "reviewer": st.selectbox("🧪 Reviewer", ["deepseek-r1:8b", "phi4:14b", "llama3:8b", "mistral-nemo:latest"], index=0),
         "citation": st.selectbox("🔗 CitationAgent", ["deepseek-r1:8b", "phi4:14b", "llama3:8b", "mistral-nemo:latest"], index=0),
         "editor": st.selectbox("📚 Editor", ["deepseek-r1:8b", "phi4:14b", "llama3:8b", "mistral-nemo:latest"], index=0),
@@ -64,7 +64,7 @@ if st.button("🚀 Сгенерировать текст"):
         st.subheader("📑 Финальная рецензия на оформленный текст")
         st.text(results["final_review"])
 
-        # 📥 Кнопка скачивания DOCX
+        # Кнопка скачивания DOCX
         doc = Document()
         doc.add_paragraph(results["formatted"])
 
