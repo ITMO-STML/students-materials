@@ -6,6 +6,7 @@ import numpy as np
 
 import sys
 import os
+import math
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -19,7 +20,7 @@ class MainWindow(QMainWindow):
         
         layout.addWidget(self.comboBox)
 
-        button = QPushButton("Select")
+        button = QPushButton("Select file")
         button.clicked.connect(self.onButtonClicked)
         layout.addWidget(button)
 
@@ -35,7 +36,7 @@ class MainWindow(QMainWindow):
         if fileName != "":
             model_path = self.comboBox.currentText()
             model = ort.InferenceSession(model_path)
-            sound_data, sample_rate = sf.read(fileName, dtype = "float32")
+            sound_data, sample_rate = sf.read(fileName)
 
             data_len = len(sound_data)
             sample_len = sample_rate
@@ -47,12 +48,15 @@ class MainWindow(QMainWindow):
 
             scores = []
             for sound_sample in sound_samples:
-                scores.append(model.run(None, {"waves": [sound_sample]})[0][0])
+                score = model.run(None, {"waves": [sound_sample]})[0][0]
 
-            
-            self.label.setText(np.mean(scores))
+                score = 1 / (1 + math.exp(-(score[1] - score[0])))
+                scores.append(score)
+
+            self.label.setText(f"{os.path.basename(fileName)} is spoofing with probability {np.mean(scores):.2f}")
 
 app = QApplication(sys.argv)
 window = MainWindow()
+window.setWindowTitle("Antispoofing")
 window.show()
 app.exec()
