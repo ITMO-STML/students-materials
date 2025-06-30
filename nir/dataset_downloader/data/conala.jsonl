@@ -1,0 +1,95 @@
+{"input": "Concatenate elements of a list 'x' of multiple integers to a single integer", "target": "sum(d * 10 ** i for i, d in enumerate(x[::-1]))"}
+{"input": "convert a list of integers into a single integer", "target": "r = int(''.join(map(str, x)))"}
+{"input": "convert a DateTime string back to a DateTime object of format '%Y-%m-%d %H:%M:%S.%f'", "target": "datetime.strptime('2010-11-13 10:33:54.227806', '%Y-%m-%d %H:%M:%S.%f')"}
+{"input": "get the average of a list values for each key in dictionary `d`)", "target": "[(i, sum(j) / len(j)) for i, j in list(d.items())]"}
+{"input": "zip two lists `[1, 2]` and `[3, 4]` into a list of two tuples containing elements at the same index in each list", "target": "zip([1, 2], [3, 4])"}
+{"input": "prepend string 'hello' to all items in list 'a'", "target": "['hello{0}'.format(i) for i in a]"}
+{"input": "regex for repeating words in a string `s`", "target": "re.sub('(?<!\\\\S)((\\\\S+)(?:\\\\s+\\\\2))(?:\\\\s+\\\\2)+(?!\\\\S)', '\\\\1', s)"}
+{"input": "normalize a pandas dataframe `df` by row", "target": "df.div(df.sum(axis=1), axis=0)"}
+{"input": "swap values in a tuple/list inside a list `mylist`", "target": "map(lambda t: (t[1], t[0]), mylist)"}
+{"input": "Swap values in a tuple/list in list `mylist`", "target": "[(t[1], t[0]) for t in mylist]"}
+{"input": "find all occurrences of the pattern '\\\\[[^\\\\]]*\\\\]|\\\\([^\\\\)]*\\\\)|\"[^\"]*\"|\\\\S+' within `strs`", "target": "re.findall('\\\\[[^\\\\]]*\\\\]|\\\\([^\\\\)]*\\\\)|\"[^\"]*\"|\\\\S+', strs)"}
+{"input": "generate the combinations of 3 from a set `{1, 2, 3, 4}`", "target": "print(list(itertools.combinations({1, 2, 3, 4}, 3)))"}
+{"input": "add multiple columns `hour`, `weekday`, `weeknum` to pandas data frame `df` from lambda function `lambdafunc`", "target": "df[['hour', 'weekday', 'weeknum']] = df.apply(lambdafunc, axis=1)"}
+{"input": "BeautifulSoup search string 'Elsie' inside tag 'a'", "target": "soup.find_all('a', string='Elsie')"}
+{"input": "Convert a datetime object `my_datetime` into readable format `%B %d, %Y`", "target": "my_datetime.strftime('%B %d, %Y')"}
+{"input": "parse string `s` to int when string contains a number", "target": "int(''.join(c for c in s if c.isdigit()))"}
+{"input": "add dictionary `{'class': {'section': 5}}` to key 'Test' of dictionary `dic`", "target": "dic['Test'].update({'class': {'section': 5}})"}
+{"input": "transforming the string `s` into dictionary", "target": "dict(map(int, x.split(':')) for x in s.split(','))"}
+{"input": "find rows matching `(0,1)` in a 2 dimensional numpy array `vals`", "target": "np.where((vals == (0, 1)).all(axis=1))"}
+{"input": "build a dictionary containing the conversion of each list in list `[['two', 2], ['one', 1]]` to a key/value pair as its items", "target": "dict([['two', 2], ['one', 1]])"}
+{"input": "convert list `l` to dictionary having each two adjacent elements as key/value pair", "target": "dict(zip(l[::2], l[1::2]))"}
+{"input": "assign float 9.8 to variable `GRAVITY`", "target": "GRAVITY = 9.8"}
+{"input": "separate numbers from characters in string \"30m1000n20m\"", "target": "re.findall('(([0-9]+)([A-Z]))', '20M10000N80M')"}
+{"input": "separate numbers and characters in string '20M10000N80M'", "target": "re.findall('([0-9]+|[A-Z])', '20M10000N80M')"}
+{"input": "separate numbers and characters in string '20M10000N80M'", "target": "re.findall('([0-9]+)([A-Z])', '20M10000N80M')"}
+{"input": "Get a list of  words from a string `Hello world, my name is...James the 2nd!` removing punctuation", "target": "re.compile('\\\\w+').findall('Hello world, my name is...James the 2nd!')"}
+{"input": "Convert string '03:55' into datetime.time object", "target": "datetime.datetime.strptime('03:55', '%H:%M').time()"}
+{"input": "request url 'https://www.reporo.com/' without verifying SSL certificates", "target": "requests.get('https://www.reporo.com/', verify=False)"}
+{"input": "Extract values not equal to 0 from numpy array `a`", "target": "a[a != 0]"}
+{"input": "map two lists `keys` and `values` into a dictionary", "target": "new_dict = {k: v for k, v in zip(keys, values)}"}
+{"input": "map two lists `keys` and `values` into a dictionary", "target": "dict((k, v) for k, v in zip(keys, values))"}
+{"input": "map two lists `keys` and `values` into a dictionary", "target": "dict([(k, v) for k, v in zip(keys, values)])"}
+{"input": "find the string matches within parenthesis from a string `s` using regex", "target": "m = re.search('\\\\[(\\\\w+)\\\\]', s)"}
+{"input": "Enable the SO_REUSEADDR socket option in socket object `s` to fix the error `only one usage of each socket address is normally permitted`", "target": "s.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)"}
+{"input": "append the sum of each tuple pair in the grouped list `list1` and list `list2` elements to list `list3`", "target": "list3 = [(a + b) for a, b in zip(list1, list2)]"}
+{"input": "converting hex string `s` to its integer representations", "target": "[ord(c) for c in s.decode('hex')]"}
+{"input": "sort list `student_tuples` by second element of each tuple in ascending and third element of each tuple in descending", "target": "print(sorted(student_tuples, key=lambda t: (-t[2], t[0])))"}
+{"input": "get list of duplicated elements in range of 3", "target": "[y for x in range(3) for y in [x, x]]"}
+{"input": "read the contents of the file 'file.txt' into `txt`", "target": "txt = open('file.txt').read()"}
+{"input": "divide each element in list `myList` by integer `myInt`", "target": "myList[:] = [(x / myInt) for x in myList]"}
+{"input": "replace white spaces in dataframe `df` with '_'", "target": "df.replace(' ', '_', regex=True)"}
+{"input": "convert date `my_date` to datetime", "target": "datetime.datetime.combine(my_date, datetime.time.min)"}
+{"input": "convert tuple `tst` to string `tst2`", "target": "tst2 = str(tst)"}
+{"input": "get modified time of file `file`", "target": "time.ctime(os.path.getmtime(file))"}
+{"input": "get creation time of file `file`", "target": "time.ctime(os.path.getctime(file))"}
+{"input": "get modification time of file `filename`", "target": "t = os.path.getmtime(filename)"}
+{"input": "get modification time of file `path`", "target": "os.path.getmtime(path)"}
+{"input": "get modified time of file `file`", "target": "print(('last modified: %s' % time.ctime(os.path.getmtime(file))))"}
+{"input": "get the creation time of file `file`", "target": "print(('created: %s' % time.ctime(os.path.getctime(file))))"}
+{"input": "get the creation time of file `path_to_file`", "target": "return os.path.getctime(path_to_file)"}
+{"input": "execute os command ''TASKKILL /F /IM firefox.exe''", "target": "os.system('TASKKILL /F /IM firefox.exe')"}
+{"input": "split string `string` on whitespaces using a generator", "target": "return (x.group(0) for x in re.finditer(\"[A-Za-z']+\", string))"}
+{"input": "Unpack each value in list `x` to its placeholder '%' in string '%.2f'", "target": "\"\"\", \"\"\".join(['%.2f'] * len(x))"}
+{"input": "match regex pattern '(\\\\d+(\\\\.\\\\d+)?)' with string '3434.35353'", "target": "print(re.match('(\\\\d+(\\\\.\\\\d+)?)', '3434.35353').group(1))"}
+{"input": "replace parentheses and all data within it with empty string '' in column 'name' of dataframe `df`", "target": "df['name'].str.replace('\\\\(.*\\\\)', '')"}
+{"input": "create a list `result` containing elements form list `list_a` if first element of list `list_a` is in list `list_b`", "target": "result = [x for x in list_a if x[0] in list_b]"}
+{"input": "generate all possible string permutations of each two elements in list `['hel', 'lo', 'bye']`", "target": "print([''.join(a) for a in combinations(['hel', 'lo', 'bye'], 2)])"}
+{"input": "get a list of items form nested list `li` where third element of each item contains string 'ar'", "target": "[x for x in li if 'ar' in x[2]]"}
+{"input": "Sort lists in the list `unsorted_list` by the element at index 3 of each list", "target": "unsorted_list.sort(key=lambda x: x[3])"}
+{"input": "Log message 'test' on the root logger.", "target": "logging.info('test')"}
+{"input": "Return a subplot axes positioned by the grid definition `1,1,1` using matpotlib", "target": "fig.add_subplot(1, 1, 1)"}
+{"input": "Sort dictionary `x` by value in ascending order", "target": "sorted(list(x.items()), key=operator.itemgetter(1))"}
+{"input": "Sort dictionary `dict1` by value in ascending order", "target": "sorted(dict1, key=dict1.get)"}
+{"input": "Sort dictionary `d` by value in descending order", "target": "sorted(d, key=d.get, reverse=True)"}
+{"input": "Sort dictionary `d` by value in ascending order", "target": "sorted(list(d.items()), key=(lambda x: x[1]))"}
+{"input": "elementwise product of 3d arrays `A` and `B`", "target": "np.einsum('ijk,ikl->ijl', A, B)"}
+{"input": "Print a string `card` with string formatting", "target": "print('I have: {0.price}'.format(card))"}
+{"input": "Write a comment `# Data for Class A\\n` to a file object `f`", "target": "f.write('# Data for Class A\\n')"}
+{"input": "move the last item in list `a` to the beginning", "target": "a = a[-1:] + a[:-1]"}
+{"input": "Parse DateTime object `datetimevariable` using format '%Y-%m-%d'", "target": "datetimevariable.strftime('%Y-%m-%d')"}
+{"input": "Normalize line ends in a string 'mixed'", "target": "mixed.replace('\\r\\n', '\\n').replace('\\r', '\\n')"}
+{"input": "find the real user home directory using python", "target": "os.path.expanduser('~user')"}
+{"input": "index a list `L` with another list `Idx`", "target": "T = [L[i] for i in Idx]"}
+{"input": "get a list of words `words` of a file 'myfile'", "target": "words = open('myfile').read().split()"}
+{"input": "Get a list of lists with summing the values of the second element from each list of lists `data`", "target": "[[sum([x[1] for x in i])] for i in data]"}
+{"input": "summing the second item in a list of lists of lists", "target": "[sum([x[1] for x in i]) for i in data]"}
+{"input": "sort objects in `Articles` in descending order of counts of `likes`", "target": "Article.objects.annotate(like_count=Count('likes')).order_by('-like_count')"}
+{"input": "return a DateTime object with the current UTC date", "target": "today = datetime.datetime.utcnow().date()"}
+{"input": "create a list containing the multiplication of each elements at the same index of list `lista` and list `listb`", "target": "[(a * b) for a, b in zip(lista, listb)]"}
+{"input": "fetch smilies matching regex pattern '(?::|;|=)(?:-)?(?:\\\\)|\\\\(|D|P)' in string `s`", "target": "re.findall('(?::|;|=)(?:-)?(?:\\\\)|\\\\(|D|P)', s)"}
+{"input": "match the pattern '[:;][)(](?![)(])' to the string `str`", "target": "re.match('[:;][)(](?![)(])', str)"}
+{"input": "convert a list of objects `list_name` to json string `json_string`", "target": "json_string = json.dumps([ob.__dict__ for ob in list_name])"}
+{"input": "create a list `listofzeros` of `n` zeros", "target": "listofzeros = [0] * n"}
+{"input": "decode the string 'stringnamehere'  to UTF-8", "target": "stringnamehere.decode('utf-8', 'ignore')"}
+{"input": "Match regex pattern '((?:A|B|C)D)' on string 'BDE'", "target": "re.findall('((?:A|B|C)D)', 'BDE')"}
+{"input": "Create a key `key` if it does not exist in dict `dic` and append element `value` to value.", "target": "dic.setdefault(key, []).append(value)"}
+{"input": "Get the value of the minimum element in the second column of array `a`", "target": "a[np.argmin(a[:, (1)])]"}
+{"input": "extend dictionary `a` with key/value pairs of dictionary `b`", "target": "a.update(b)"}
+{"input": "removing key values pairs with key 'mykey1' from a list of dictionaries `mylist`", "target": "[{k: v for k, v in d.items() if k != 'mykey1'} for d in mylist]"}
+{"input": "create 3 by 3 matrix of random numbers", "target": "numpy.random.random((3, 3))"}
+{"input": "make new column 'C' in panda dataframe by adding values from other columns 'A' and 'B'", "target": "df['C'] = df['A'] + df['B']"}
+{"input": "create a list of values from the dictionary `programs` that have a key with a case insensitive match to 'new york'", "target": "[value for key, value in list(programs.items()) if 'new york' in key.lower()]"}
+{"input": "append a path `/path/to/main_folder` in system path", "target": "sys.path.append('/path/to/main_folder')"}
+{"input": "get all digits in a string `s` after a '[' character", "target": "re.findall('\\\\d+(?=[^[]+$)', s)"}
+{"input": "python pickle/unpickle a list to/from a file 'afile'", "target": "pickle.load(open('afile', 'rb'))"}
