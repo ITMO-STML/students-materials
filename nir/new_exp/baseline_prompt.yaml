@@ -1,0 +1,47 @@
+root: "G:\\ITMO\\NIR\\DATASETS\\processed"
+
+datasets:
+  humaneval:
+    file: "humaneval.jsonl"
+    template: |
+      Write the Python function requested below.
+
+      {input}
+
+      # Your code
+    max_new_tokens: 128
+
+  mbpp:
+    file: "mbpp.jsonl"
+    template: |
+      Implement the following Python function:
+
+      {input}
+
+      ### Solution
+    max_new_tokens: 128
+
+  conala:
+    file: "conala.jsonl"
+    template: |
+      Translate the natural language description into Python.
+
+      Description: {input}
+
+      Python code:
+    max_new_tokens: 64
+
+  conala_mined:
+    file: "conala_mined.jsonl"
+    template: |
+      Translate the natural language description into Python.
+
+      Description: {input}
+
+      Python code:
+    max_new_tokens: 64
+
+model_name: "bigcode/starcoderbase-1b"
+batch_size: 1
+beam_size: 1
+seed: 42

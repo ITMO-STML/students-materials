@@ -1,0 +1,27 @@
+# Core
+torch>=2.2.0
+transformers>=4.41.1
+accelerate>=0.30.0
+tokenizers>=0.19.1
+sentencepiece
+huggingface_hub>=0.23.1
+
+# Dataset & evaluation
+datasets>=2.19.0
+evaluate>=0.4.2
+scikit-learn>=1.5.0
+rouge-score
+nltk
+regex
+tqdm
+PyYAML
+
+# Logging & notebook
+wandb>=0.16.6
+jupyter
+ipython
+rich
+
+# Visualization
+matplotlib>=3.9.0
+seaborn>=0.13.2
