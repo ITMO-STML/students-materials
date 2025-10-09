@@ -1,24 +1,22 @@
-FROM python:3.13-slim
+FROM python:3.10-slim
 
-# Обновляем pip и инструменты сборки
-RUN pip install --upgrade pip setuptools wheel
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# Создаём рабочую директорию
 WORKDIR /app
 
-# Копируем только requirements.txt (для кеша)
-COPY requirements.txt /app/
-
-RUN pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
-
 # Устанавливаем зависимости
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируем проект (с учётом .dockerignore)
-COPY . /app
+# Копируем проект (data/models/kaggle.json исключены .dockerignore)
+COPY . .
 
-# Открываем порт для Jupyter
-EXPOSE 8888
+# Создаём директории и kaggle config dir (файл туда будем монтировать)
+RUN mkdir -p /app/data /app/models /root/.kaggle && chmod 700 /root/.kaggle
 
-# Запускаем Jupyter Notebook
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=", "--NotebookApp.password="]
+ENV KAGGLE_CONFIG_DIR=/root/.kaggle
+
+RUN chmod +x /app/entrypoint.sh
+
+ENTRYPOINT ["bash", "/app/entrypoint.sh"]

@@ -1,0 +1,14 @@
+build
+docker build -t my-model:latest .
+
+run
+docker run --rm -v E:\nastya\lab1\data:/app/data -v E:\nastya\lab1\models:/app/models -v E:\nastya\lab1\kaggle.json:/root/.kaggle/kaggle.json:ro -e KAGGLE_CONFIG_DIR=/root/.kaggle my-model:latest
+
+
+--rm	удаляет контейнер после завершения (чтобы не засорял систему)
+
+-v E:\nastya\lab1\data:/app/data	монтирует папку data внутрь контейнера
+-v E:\nastya\lab1\models:/app/models	монтирует папку с весами
+-v E:\nastya\lab1\kaggle.json:/root/.kaggle/kaggle.json:ro	даёт контейнеру доступ к kaggle токену
+-e KAGGLE_CONFIG_DIR=/root/.kaggle	указывает путь к kaggle конфигу
+my-model:latest	имя образа
