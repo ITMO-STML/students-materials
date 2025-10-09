@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install --no-cache-dir torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu118
 
-RUN pip install --no-cache-dir pandas tqdm opencv-python pybind11>=2.12
+RUN pip install --no-cache-dir pandas tqdm opencv-python pybind11>=2.12 scikit-learn numpy
 
 
-CMD ["python", "classifier.py", "--path", "/data", "--batch_size", "32", "--epochs", "50", "--lr", "0.001"]
+CMD ["python", "classifier.py", "--path", "/data", "--batch_size", "32", "--epochs", "50", "--lr", "0.0001"]
