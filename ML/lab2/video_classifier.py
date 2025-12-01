@@ -259,7 +259,6 @@ def train_mtl_epoch(model, dataloader, device, optimizer, criteria, epoch, total
         language_correct += (language_pred == language_target).sum().item()
         total_samples += age_target.size(0)
         
-        # Update progress bar
         current_loss = total_loss / (batch_idx + 1)
         age_acc = age_correct / total_samples
         gender_acc = gender_correct / total_samples
@@ -309,7 +308,6 @@ def train_single_epoch(model, dataloader, device, optimizer, criterion, task_idx
         correct += (pred == targets).sum().item()
         total_samples += targets.size(0)
         
-        # Update progress bar
         current_loss = total_loss / (batch_idx + 1)
         accuracy = correct / total_samples
         
@@ -358,7 +356,6 @@ def evaluate_mtl(model, dataloader, device, criteria):
             language_correct += (language_pred == language_target).sum().item()
             total_samples += age_target.size(0)
             
-            # Update progress bar
             current_loss = total_loss / len(dataloader)
             age_acc = age_correct / total_samples
             gender_acc = gender_correct / total_samples
@@ -406,7 +403,6 @@ def evaluate_single(model, dataloader, device, criterion, task_idx, task_name):
             correct += (pred == targets).sum().item()
             total_samples += targets.size(0)
             
-            # Update progress bar
             current_loss = total_loss / len(dataloader)
             accuracy = correct / total_samples
             
@@ -492,12 +488,11 @@ def run_ablation_study(train_loader, val_loader, num_age_classes, num_gender_cla
     return results, mtl_model
 
 if __name__ == "__main__":
-    # Hyperparameters
     MAX_FRAMES = 8
     BATCH_SIZE = 2
     LIMIT_VIDEOS = 5
-    ABLATION_EPOCHS = 2  # Количество эпох для ablation study
-    FINAL_EPOCHS = 3     # Количество эпох для финального обучения
+    ABLATION_EPOCHS = 2
+    FINAL_EPOCHS = 3
 
     print("Loading dataset...")
     ds = load_dataset("FreedomIntelligence/TalkVid")
@@ -535,12 +530,10 @@ if __name__ == "__main__":
     print(f"Using device: {device}")
 
     if len(dataset) > 0:
-        # Ablation study
         ablation_results, model = run_ablation_study(
             train_loader, val_loader, num_age_classes, num_gender_classes, num_language_classes, device, ABLATION_EPOCHS
         )
 
-        # Финальное обучение лучшей модели (MTL)
         print("\n" + "="*50)
         print(f"Final MTL Training ({FINAL_EPOCHS} epochs)")
         print("="*50)
@@ -571,8 +564,8 @@ if __name__ == "__main__":
             'language_encoder': dataset.language_encoder.classes_,
         }, 'mtl_video_model.pth')
 
-        print("\n✅ MTL Model saved successfully as 'mtl_video_model.pth'")
+        print("\nMTL Model saved successfully as 'mtl_video_model.pth'")
     else:
-        print("❌ No data available for training")
+        print("No data available for training")
     
-    print("\n🎯 Script execution completed!")
+    print("\nScript execution completed!")
