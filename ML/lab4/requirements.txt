@@ -1,0 +1,11 @@
+torch>=2.5.0
+torchvision>=0.20.0
+torchaudio>=2.5.0
+diffusers>=0.30.0
+transformers>=4.45.0
+accelerate>=0.30.0
+opencv-python>=4.7.0
+pillow>=10.0.0
+numpy>=2.0.0
+matplotlib>=3.8.0
+tqdm>=4.66.0
