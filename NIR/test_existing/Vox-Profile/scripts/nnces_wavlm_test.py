@@ -10,7 +10,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 sys.path.append(os.path.join(str(Path(os.path.realpath(__file__)).parents[1])))
 sys.path.append(os.path.join(str(Path(os.path.realpath(__file__)).parents[1]), 'model', 'age_sex'))
 
-from model.age_sex.wavlm_demographics import WavLMWrapper
+from model.wavlm_demographics import WavLMWrapper
 
 import logging
 logging.basicConfig(
