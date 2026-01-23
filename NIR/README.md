@@ -13,22 +13,22 @@
 Проект имеет следующую структуру
 
 ```NIR/
-├── 📁 datasets/                      # Ноутбуки с анализом данных
+├── datasets/                      # Ноутбуки с анализом данных
 │   ├── agevox_EDA.ipynb              # Первичный анализ AgeVoxCeleb
 │   ├── nnces_EDA.ipynb               # Первичный анализ NNCES
 │   ├── seniorTalk_EDA.ipynb          # Первичный анализ SeniorTalk
 │   └── timit_EDA.ipynb               # Первичный анализ TIMIT
 │
-├── 📁 test_existing/
-│   └── 📁 Vox-Profile/               # Тестирование модели Vox-Profile
-│       ├── 📁 model/                 # Модели для определения биометрических данных (возраста) по голосу
+├── test_existing/
+│   └── Vox-Profile/               # Тестирование модели Vox-Profile
+│       ├── model/                 # Модели для определения биометрических данных (возраста) по голосу
 │       │   └── wavlm_demographics.py
-│       ├── 📁 notebooks/             # Анализ ошибок предсказаний
+│       ├── notebooks/             # Анализ ошибок предсказаний
 │       │   ├── agevox_pred_errors.ipynb
 │       │   ├── nnces_pred_errors.ipynb
 │       │   ├── seniorTalk_pred_errors.ipynb
 │       │   └── timit_pred_errors.ipynb
-│       └── 📁 scripts/               # Скрипты тестирования
+│       └── scripts/               # Скрипты тестирования
 │           ├── agevox_wavlm_test.py
 │           ├── nnces_wavlm_test.py
 │           ├── seniorTalk_wavlm_test.py
@@ -45,6 +45,7 @@
 | **NNCES** | 13.58 | 14.81 | 5.93 | 0.6 | 1.7 | 4.1 | 27.1 |
 | **SeniorTalk** | 26.34 | 30.04 | 15.59 | 1.1 | 3.5 | 6.3 | 12.6 |
 | **TIMIT** | **6.49** | **8.54** | **8.53** | **9.8** | **29.6** | **48.4** | **80.1** |
+
 
 
 
