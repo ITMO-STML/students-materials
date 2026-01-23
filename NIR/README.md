@@ -33,8 +33,9 @@
 │           ├── seniorTalk_wavlm_test.py
 │           └── timit_wavlm_test.py
 │
-└── 📄 README.md
+└── README.md
 ```
+
 
 
 
