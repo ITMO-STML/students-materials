@@ -10,5 +10,30 @@
 - в маркетинге в задачах персонализированного обслуживания;
 - в системах верификации и диаризации диктора для различного рода задач.
 
+Проект имеет следующую структуру
+NIR/
+├── 📁 datasets/                      # Ноутбуки с анализом данных
+│   ├── agevox_EDA.ipynb              # Первичный анализ AgeVoxCeleb
+│   ├── nnces_EDA.ipynb               # Первичный анализ NNCES
+│   ├── seniorTalk_EDA.ipynb          # Первичный анализ SeniorTalk
+│   └── timit_EDA.ipynb               # Первичный анализ TIMIT
+│
+├── 📁 test_existing/
+│   └── 📁 Vox-Profile/                  # Тестирование модели Vox-Profile
+│       ├── 📁 model/                    # Модели для определения биометрических данных (возраста) по голосу
+│       │   └── wavlm_demographics.py     
+│       ├── 📁 notebooks/                # Анализ ошибок предсказаний
+│       │   ├── agevox_pred_errors.ipynb
+│       │   ├── nnces_pred_errors.ipynb
+│       │   ├── seniorTalk_pred_errors.ipynb
+│       │   └── timit_pred_errors.ipynb
+│       └── 📁 scripts/                  # Скрипты тестирования
+│           ├── agevox_wavlm_test.py
+│           ├── nnces_wavlm_test.py
+│           ├── seniorTalk_wavlm_test.py
+│           └── timit_wavlm_test.py
+│
+└── 📄 README.md
+
 
 
