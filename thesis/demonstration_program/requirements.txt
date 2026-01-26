@@ -1,0 +1,7 @@
+torch>=2.0.0
+torchaudio>=2.0.0
+numpy>=1.21.0
+librosa>=0.10.0
+matplotlib>=3.5.0
+gradio>=4.0.0
+scipy>=1.9.0
