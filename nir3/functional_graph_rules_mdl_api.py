@@ -1,6 +1,5 @@
 # functional_graph_rules_mdl_api.py
 #
-# Goals:
 #  - 4 comparable modes:
 #       A_topk:    disambiguate=False, rules=False
 #       B_rules:   disambiguate=False, rules=True  (your rules/MDL)
