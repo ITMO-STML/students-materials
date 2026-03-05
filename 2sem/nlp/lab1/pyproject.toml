@@ -1,0 +1,24 @@
+[project]
+name = "itmo-master-labs"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "gensim>=4.4.0",
+    "librosa>=0.11.0",
+    "matplotlib>=3.10.8",
+    "nltk>=3.9.3",
+    "num2words>=0.5.14",
+    "numpy>=2.4.2",
+    "pandas>=3.0.1",
+    "pymorphy3>=2.0.6",
+    "scikit-learn>=1.8.0",
+    "scipy>=1.17.1",
+    "tqdm>=4.67.3",
+    "ufal-udpipe>=1.4.0.1",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.2.0",
+    "kaggle>=2.0.0",
+]
