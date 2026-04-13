@@ -36,8 +36,8 @@ def load_audio(file_path, target_sr=16000, max_samples=240000):
         return None
 
 if __name__ == '__main__':
-    dataset_path = "/mnt/storage/work_dir/databases/voice_biometrics_age/voice_biometrics_age"
-    excel_path = "/mnt/storage/work_dir/databases/voice_biometrics_age/metadata.xlsx"
+    dataset_path = "./voice_biometrics_age/voice_biometrics_age"
+    excel_path = "./voice_biometrics_age/metadata.xlsx"
     output_csv = "voicebio_predictions.csv"
     
     df = pd.read_excel(excel_path, engine='openpyxl')
