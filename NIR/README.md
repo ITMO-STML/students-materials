@@ -36,6 +36,56 @@
 │
 └── README.md
 ```
+```
+├── datasets/                          # Ноутбуки с анализом данных
+│   ├── agevox_EDA.ipynb               # Первичный анализ AgeVoxCeleb
+│   ├── nnces_EDA.ipynb                # Первичный анализ NNCES
+│   ├── seniorTalk_EDA.ipynb           # Первичный анализ SeniorTalk
+│   └── timit_EDA.ipynb                # Первичный анализ TIMIT
+│
+├── test_open-source/                  # Тестирование открытых решений
+│   │
+│   ├── SpeakerProfiling/              # Решение на основе WavLM
+│   │   ├── model/                     # Модель и утилиты
+│   │   │   ├── models.py
+│   │   │   └── utils.py
+│   │   ├── notebooks/                 # Анализ ошибок
+│   │   │   ├── agevox_errors.ipynb
+│   │   │   ├── nnces_errors.ipynb
+│   │   │   ├── seniorTalk_errors.ipynb
+│   │   │   ├── timit_errors.ipynb
+│   │   │   └── voicebio_errors.ipynb
+│   │   ├── scripts/                   # Скрипты тестирования
+│   │   │   ├── agevox_test.py
+│   │   │   ├── nnces_test.py
+│   │   │   ├── seniorTalk_test.py
+│   │   │   ├── timit_test.py
+│   │   │   └── voicebio_test.py
+│   │   └── config.json                # Конфигурация
+│   │
+│   ├── TLM/                           # Tessellated Linear Model
+│   │   ├── feature_extraction/        # Извлечение признаков
+│   │   ├── model/                     # Архитектура TLM
+│   │   ├── notebooks/                 # Анализ ошибок
+│   │   └── scripts/                   # Скрипты тестирования
+│   │
+│   └── Vox-Profile/                   # Vox-Profile benchmark
+│       ├── model/
+│       │   └── wavlm_demographics.py
+│       ├── notebooks/
+│       │   ├── agevox_pred_errors.ipynb
+│       │   ├── nnces_pred_errors.ipynb
+│       │   ├── seniorTalk_pred_errors.ipynb
+│       │   └── timit_pred_errors.ipynb
+│       └── scripts/
+│           ├── agevox_wavlm_test.py
+│           ├── nnces_wavlm_test.py
+│           ├── seniorTalk_wavlm_test.py
+│           └── timit_wavlm_test.py
+│
+└── README.md
+```
+
 После проведения тестирования модели для количественной оценки точности модели на каждом корпусе были рассчитаны стандартные метрики регрессии, такие как MAE (Mean Absolute Error) и RMSE (Root Mean Square Error) и некоторые другие показатели, представленные в таблице.
 
 **Таблица результатов тестирования**
