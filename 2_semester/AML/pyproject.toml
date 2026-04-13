@@ -1,0 +1,78 @@
+[project]
+name = "aml"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12, <3.13"
+dependencies = [
+    "gradio>=6.9.0",
+    "ipykernel>=7.2.0",
+    "matplotlib>=3.10.8",
+    "numpy>=2.4.3",
+    "pandas>=3.0.1",
+    "scikit-learn>=1.8.0",
+    "seaborn>=0.13.2",
+]
+
+[dependency-groups]
+dev = ["pre-commit >=4.5.1,<4.6"]
+
+[tool.ruff]
+line-length = 120
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 80
+indent-style = "space"
+quote-style = "double"
+skip-magic-trailing-comma = false
+
+[tool.ruff.lint]
+select = [
+      "F",
+      "E",
+      "W",
+      "I",
+      "UP", # Warn if certain things can changed due to newer Python versions
+      "C4", # Catch incorrect use of comprehensions
+      "ISC001", # Implicitly concatenated string literals on one line
+      "ICN", # Use common import conventions
+      "RET", # Return practices
+      "SIM", # Simplification rules
+
+]
+ignore = [
+      "E741",  # allow "l" as a variable name
+      "N803",  # uppercase
+      "UP031", # str formatting
+      "RET504",# assignment before return
+]
+task-tags = ["TODO"]

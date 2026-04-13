@@ -1,0 +1,93 @@
+[project]
+name = "nlp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10, <3.11"
+dependencies = [
+    "catboost>=1.2.10, <1.3",
+    "ipykernel>=7.2.0, <7.4",
+    "pymorphy3>=2.0.6, <2.1",
+    "torch>=2.6.0, <2.7",
+    "torchaudio>=2.6.0, <2.7",
+    "torchvision>=0.21.0, <0.22", "tokenizers>=0.22.2,<0.23", "pandas>=2.3.3,<3", "pytorch-lightning>=2.6.1,<3", "torchmetrics>=1.9.0,<2", "datasets>=4.8.4,<5", "ipywidgets>=8.1.8,<9", "seaborn>=0.13.2,<0.14",
+]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[tool.pixi.dependencies]
+python = "3.10.*"
+
+[tool.pixi.pypi-dependencies]
+torch = { version = ">=2.6.0, <2.7", index = "https://download.pytorch.org/whl/cu126" }
+torchvision = { version = ">=0.21.0, <0.22", index = "https://download.pytorch.org/whl/cu126" }
+torchaudio = { version = ">=2.6.0, <2.7", index = "https://download.pytorch.org/whl/cu126" }
+
+[tool.ruff]
+line-length = 120
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 80
+indent-style = "space"
+quote-style = "double"
+skip-magic-trailing-comma = false
+
+[tool.ruff.lint]
+select = [
+      "F",
+      "E",
+      "W",
+      "I",
+      "UP", # Warn if certain things can changed due to newer Python versions
+      "C4", # Catch incorrect use of comprehensions
+      "ISC001", # Implicitly concatenated string literals on one line
+      "ICN", # Use common import conventions
+      "RET", # Return practices
+      "SIM", # Simplification rules
+
+]
+ignore = [
+      "E741",  # allow "l" as a variable name
+      "N803",  # uppercase
+      "UP031", # str formatting
+      "RET504",# assignment before return
+      "ANN001",
+      "ANN002",
+      "ANN003",
+      "ANN201",
+      "ANN204",
+      "ANN401",
+      "ISC001",
+]
+task-tags = ["TODO"]
