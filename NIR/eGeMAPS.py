@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Deepfake Detection with eGeMAPS features
-Author: Khodzhametova M.I.
-Supervisor: Chirkovsky A.D.
-ITMO University, 2026
-"""
-
 import os
 import numpy as np
 import pandas as pd
