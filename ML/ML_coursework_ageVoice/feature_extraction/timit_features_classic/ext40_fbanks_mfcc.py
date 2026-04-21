@@ -39,7 +39,7 @@ def find_original_wav_files(timit_base_path):
 
 
 def load_timit_audio(file_path, target_sr=16000, max_samples=240000):
-    """Загружает аудио из TIMIT (из твоего скрипта)"""
+    """Загружает аудио из TIMIT"""
     try:
         try:
             from scipy.io import wavfile
