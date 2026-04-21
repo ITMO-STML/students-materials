@@ -1,0 +1,141 @@
+# Wine Quality Classification
+
+Проект по машинному обучению для предсказания качества вина на основе его химических показателей.
+
+## О проекте
+
+Этот проект реализует классификатор качества вина с использованием Gaussian Naive Bayes. Модель анализирует 11 химических параметров вина и предсказывает его качество по шкале от 4 до 8 баллов.
+
+Что предсказывает модель:
+- quality (качество) — оценка от 4 до 8 баллов
+- 4-5 — плохое вино
+- 6 — среднее вино
+- 7-8 — хорошее вино
+
+Какие данные использует:
+
+fixed acidity — фиксированная кислотность
+volatile acidity — летучая кислотность
+citric acid — лимонная кислота
+residual sugar — остаточный сахар
+chlorides — хлориды (соли)
+free sulfur dioxide — свободный диоксид серы
+total sulfur dioxide — общий диоксид серы
+density — плотность
+pH — кислотность
+sulphates — сульфаты
+alcohol — алкоголь
+quality — качество (целевая переменная)
+
+## Как запустить проект
+
+Требования:
+- Python 3.9 или выше
+- Docker (опционально)
+
+Локальный запуск:
+
+1. Клонируйте репозиторий:
+git clone https://github.com/your-username/wine-quality-classification.git
+cd wine-quality-classification
+
+2. Создайте виртуальное окружение:
+python3 -m venv venv
+source venv/bin/activate
+
+3. Установите зависимости:
+pip install -r requirements.txt
+
+4. Запустите обучение модели:
+python main.py
+
+Запуск через Docker:
+
+docker build -t wine-quality-lab .
+docker run --rm -v $(pwd):/app wine-quality-lab python main.py
+
+## Структура проекта
+
+wine-quality-classification/
+├── data/
+│   └── raw/
+│       ├── wine_variations.csv
+│       └── winequality_old.csv
+├── reports/
+│   └── test_visualizations/
+├── main.py
+├── test_train40_test11.py
+├── test_visualization.py
+├── requirements.txt
+├── Dockerfile
+├── docker-compose.yml
+└── README.md
+
+## Результаты
+
+Тестирование модели:
+Модель обучалась на 40 образцах (качество 4-8) и тестировалась на 11 старых образцах (качество 5-7).
+
+Точность: 27.27% (3 правильных из 11)
+
+Что показало тестирование:
+- Хорошо предсказывает качество 5 (3 из 5 правильно)
+- Сложности с качеством 7 (0 из 2 правильно)
+- Модель склонна завышать оценки для низкокачественных вин
+
+Визуализации:
+После запуска test_visualization.py в папке reports/test_visualizations/ появляются:
+- comparison_plots.png — сравнение истинных и предсказанных значений
+- confusion_matrix.png — матрица ошибок
+- features_vs_quality.png — зависимость от ключевых признаков
+- correlation_heatmap.png — корреляция признаков
+- detailed_results_table.png — детальная таблица результатов
+- bar_comparison.png — столбчатая диаграмма
+
+## Используемые технологии
+
+- Python 3.9
+- scikit-learn — Gaussian Naive Bayes
+- pandas, numpy — обработка данных
+- matplotlib, seaborn — визуализация
+- Docker — контейнеризация
+
+## Как улучшить модель
+
+1. Добавить больше данных — использовать полный датасет (1600+ образцов)
+2. Попробовать другие алгоритмы — Random Forest, Logistic Regression
+3. Бинарная классификация — разделить на хорошее (6-8) и плохое (4-5)
+4. Feature engineering — создание новых признаков
+
+## Команды для работы
+
+Показать обучающие данные:
+cat data/raw/wine_variations.csv | head
+
+Показать тестовые данные:
+cat data/raw/winequality_old.csv | head
+
+Запустить обучение:
+python main.py
+
+Запустить тестирование:
+python test_train40_test11.py
+
+Создать визуализации:
+python test_visualization.py
+
+Открыть папку с результатами (Windows):
+explorer.exe reports/
+
+## Лицензия
+
+MIT
+
+## Автор
+
+Katya
+
+## Ссылки
+
+Wine Quality Dataset (UCI): https://archive.ics.uci.edu/ml/datasets/wine+quality
+Gaussian Naive Bayes документация: https://scikit-learn.org/stable/modules/naive_bayes.html

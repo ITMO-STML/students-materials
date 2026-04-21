@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  wine-lab:
+    build: .
+    container_name: wine-quality-lab
+    volumes:
+      - .:/app
+      - ./data:/app/data
+      - ./reports:/app/reports
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python main.py
