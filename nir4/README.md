@@ -1,6 +1,6 @@
-# MoE for Multilingual Semantic Search
+# Mixture of experts модель семантического поиска
 
-Реализация модели семантического поиска на архитектуре Mixture of Experts (MoE) на базе multilingual-E5-large для многоязычных задач retrieval.
+Реализация модели семантического поиска на архитектуре Mixture of Experts (MoE) на базе multilingual-E5-large для многоязычных задач поиска.
 
 ## Структура репозитория
 
