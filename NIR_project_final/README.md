@@ -87,7 +87,7 @@
   - CER
   - Boundary Error
   - waveform + segmentation
-  - alignment map только для `CTC + Attention`
+  - alignment map для `CTC + Attention`
 
 Запуск:
 
@@ -108,9 +108,8 @@ python app.py
 python app.py
 ```
 
-## Зависимости
+## Библиотеки
 
-Минимум нужны:
 
 - `torch`
 - `torchaudio`
@@ -122,15 +121,6 @@ python app.py
 - `matplotlib`
 - `seaborn`
 - `python-Levenshtein`
-
-Список пакетов см. в [requirements.txt](/Users/ananeva/Downloads/Thesis_project_final/requirements.txt).
-
-## Замечания
-
-- Проект ориентирован на запуск из корня репозитория.
-- Для подпапок с кодом добавлены `__init__.py`, чтобы импорты были стабильнее.
-- `content_manager/PhonHuBERT-main` — это отдельный большой блок стороннего/вендорного кода, его структура пока не была полностью перепакована под обычный Python package style.
-- В `app.py` учтена совместимость со старыми версиями `Python 3.7` и `Gradio`.
 
 ## Быстрый сценарий работы
 
