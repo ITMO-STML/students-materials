@@ -1,12 +1,12 @@
-# Structured Ontological Legal Analysis Reasoner (SOLAR)
+# Структурированный онтологический алгоритм лингвистического анализа
 
-This repository contains the evaluation code for the paper "On Verifiable Legal Reasoning: A Multi-Agent Framework with Formalized Knowledge Representations" accepted at CIKM 2025.
+В этом репозитории содержится код для оценки статьи «О проверяемом юридическом рассуждении: многоагентная структура с формализованными представлениями знаний», принятой к публикации на конференции СІКМ 2025, измененный под лингвистический домен.
 
-SOLAR is a two-stage framework that decomposes legal reasoning into knowledge acquisition (Stage I) and knowledge application (Stage II), demonstrating improved performance on statutory reasoning tasks.
+Здесь представлена двухэтапная структура, которая разделяет юридическое рассуждение на приобретение знаний (этап I) и применение знаний (этап II). Она продемонстрировала улучшенную производительность в задачах законодательного рассуждения.
 
-## Setup
+## Настройка
 
-Create `.env` file with your API keys:
+Создайте файл `.env` с вашими АРІ-ключами:
 
 ```
 OPENAI_API_KEY=
@@ -15,11 +15,11 @@ ANTHROPIC_API_KEY=
 GOOGLE_API_KEY=
 ```
 
-## Usage
+## Использование
 
-### Stage I: Knowledge Acquisition
+### Этап I: Получение знаний
 
-Generate TBox ontology and interpreter from legal statute:
+Сгенерируйте онтологию ТВох и интерпретатор на основе лингвистического документа:
 
 ```bash
 uv run stage_one.py \
@@ -29,18 +29,18 @@ uv run stage_one.py \
     --model gpt-4.1-mini
 ```
 
-Arguments:
+Значения:
 
-- `--model`: Model to use (gpt-4.1-mini, o1 etc.)
-- `--statute`: Path to input statute text file
-- `--output-tbox`: Output path for generated TBox JSON
-- `--output-py`: Output path for TBox interpreter Python code
-- `--debug`: Enable debug output
-- `--no-cache`: Disable LLM caching
+- `--model`: Используемая модель (gpt-4.1-mini, o1 etc.)
+- `--resource_text`: Путь к входному лингвистическому текстовому файлу
+- `--output-tbox`: Путь к выходному файлу сгенерированного JSON-файла TBox
+- `--output-py`: Путь к выходному файлу интерпретатора на Python
+- `--debug`: Включить отладочный вывод
+- `--no-cache`: Отключить кэширование LLM
 
-## Stage II: Knowledge Application
+## Этап II: Применение знаний
 
-Evaluate different reasoning approaches on the SARA numeric dataset:
+Оценка различных подходов к рассуждениям на числовом наборе данных SARA:
 
 ```bash
 uv run stage_two.py \
@@ -52,15 +52,14 @@ uv run stage_two.py \
 ```
 
 Arguments:
-- `--model`: Model to evaluate
-- `--mode`: Reasoning approach (`zero-shot`, `chain-of-code`, `solar`)
-- `--dataset`: Dataset split (`train`, `test`)
-- `--success-threshold`: Success tolerance percentage (default: 10.0%)
-- `--limit`: Limit number of test cases (-1 for all)
-- `--debug`: Enable debug output
-- `--tbox-path`: Path to TBox JSON (for solar mode)
-- `--tbox-interpreter-path`: Path to TBox interpreter (for solar mode)
+- `--model`: Модель для оценки
+- `--mode`: Подход к рассуждениям (`zero-shot`, `chain-of-code`, `solar`)
+- `--dataset`: Разделение набора данных (`обучающий`, `тестовый`)
+- `--success-threshold`: Процент допустимого успеха (по умолчанию: 10.0%)
+- `--limit`: Ограничение количества тестовых случаев (-1 для всех)
+- `--debug`: Включить отладочный вывод
+- `--tbox-path`: Путь к JSON-файлу ТВох (для режима solar)
+- `--tbox-interpreter-path`: Путь к интерпретатору (для режима solar)
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+## Лицензия
+Этот проект распространяется под лицензией MIT [MIT License](LICENSE).
