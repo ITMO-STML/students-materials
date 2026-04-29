@@ -1,0 +1,12 @@
+PyMuPDF>=1.24,<2
+pypdf>=5.0,<6
+pytesseract>=0.3.10,<0.4
+Pillow>=10,<12
+networkx>=3.2,<4
+rapidfuzz>=3.9,<4
+nltk>=3.8,<4
+scikit-learn>=1.4,<2
+plotly>=5.20,<7
+streamlit>=1.36,<2
+neo4j>=5.20,<6
+pytest>=8,<9
