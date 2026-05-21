@@ -13,38 +13,58 @@
 Проект имеет следующую структуру
 
 ```NIR/
-├── datasets/                      # Ноутбуки с анализом данных
-│   ├── agevox_EDA.ipynb              # Первичный анализ AgeVoxCeleb
-│   ├── nnces_EDA.ipynb               # Первичный анализ NNCES
-│   ├── seniorTalk_EDA.ipynb          # Первичный анализ SeniorTalk
-│   └── timit_EDA.ipynb               # Первичный анализ TIMIT
+├── datasets/                          # Ноутбуки с анализом данных
+│   ├── agevox_EDA.ipynb               # Первичный анализ AgeVoxCeleb
+│   ├── nnces_EDA.ipynb                # Первичный анализ NNCES
+│   ├── seniorTalk_EDA.ipynb           # Первичный анализ SeniorTalk
+│   └── timit_EDA.ipynb                # Первичный анализ TIMIT
+│   └── voicebio_EDA.ipynb             # Первичный анализ VoiceBiometricAge 
 │
-├── test_open-source/
-│   └── Vox-Profile/               # Тестирование модели Vox-Profile
-│       ├── model/                 # Модели для определения биометрических данных (возраста) по голосу
+├── test_open-source/                  # Тестирование открытых решений
+│   │
+│   ├── SpeakerProfiling/              # Решение на основе WavLM
+│   │   ├── model/                     # Модель и утилиты
+│   │   │   ├── models.py
+│   │   │   └── utils.py
+│   │   ├── notebooks/                 # Анализ ошибок
+│   │   │   ├── agevox_errors.ipynb
+│   │   │   ├── nnces_errors.ipynb
+│   │   │   ├── seniorTalk_errors.ipynb
+│   │   │   ├── timit_errors.ipynb
+│   │   │   └── voicebio_errors.ipynb
+│   │   ├── scripts/                   # Скрипты тестирования
+│   │   │   ├── agevox_test.py
+│   │   │   ├── nnces_test.py
+│   │   │   ├── seniorTalk_test.py
+│   │   │   ├── timit_test.py
+│   │   │   └── voicebio_test.py
+│   │   └── config.json                # Конфигурация
+│   │
+│   ├── TLM/                           # Tessellated Linear Model
+│   │   ├── feature_extraction/        # Извлечение признаков titanet
+│   │   ├── model/                     
+│   │   ├── notebooks/                 
+│   │   └── scripts/                   
+│   │
+│   └── Vox-Profile/                   # Vox-Profile benchmark
+│       ├── model/
 │       │   └── wavlm_demographics.py
-│       ├── notebooks/             # Анализ ошибок предсказаний
-│       │   ├── agevox_pred_errors.ipynb
-│       │   ├── nnces_pred_errors.ipynb
-│       │   ├── seniorTalk_pred_errors.ipynb
-│       │   └── timit_pred_errors.ipynb
-│       └── scripts/               # Скрипты тестирования
-│           ├── agevox_wavlm_test.py
-│           ├── nnces_wavlm_test.py
-│           ├── seniorTalk_wavlm_test.py
-│           └── timit_wavlm_test.py
+│       ├── notebooks/
+│       └── scripts/
 │
 └── README.md
 ```
+
 После проведения тестирования модели для количественной оценки точности модели на каждом корпусе были рассчитаны стандартные метрики регрессии, такие как MAE (Mean Absolute Error) и RMSE (Root Mean Square Error) и некоторые другие показатели, представленные в таблице.
 
-**Таблица результатов тестирования**
-| Набор данных | MAE, лет | RMSE, лет | Std of error, лет | Err ≤ 1 года, % | Err ≤ 2 лет, % | Err ≤ 3 лет, % | Err ≤ 4 лет, % |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **AgeVoxCeleb** | 9.33 | 11.98 | 11.91 | 7.0 | 21.2 | 35.0 | 62.1 |
-| **NNCES** | 13.58 | 14.81 | 5.93 | 0.6 | 1.7 | 4.1 | 27.1 |
-| **SeniorTalk** | 26.34 | 30.04 | 15.59 | 1.1 | 3.5 | 6.3 | 12.6 |
-| **TIMIT** | **6.49** | **8.54** | **8.53** | **9.8** | **29.6** | **48.4** | **80.1** |
+**Таблица результатов тестирования**  
+  
+*В ячейках таблицы указаны: верхняя строка - MAE/RMSE (лет), нижняя строка - Std ошибки / Accuracy ±10 лет (%)*  
+| Модель | TIMIT | AgeVoxCeleb | NNCES | SeniorTalk | VoiceBiometricAge |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| **Vox-Profile** | 6.49/8.54<br>8.53/80.1 | 9.33/11.98<br>11.91/62.1 | 13.58/14.81<br>5.93/27.1 | 26.34/30.04<br>15.59/12.6 | 8.71/11.31<br>11.21/65.5 |
+| **Speaker Profiling** | 4.18/5.87<br>5.80/92.3 | 14.82/18.59<br>12.99/42.6 | 21.98/22.10<br>2.37/0 | 47.92/47.94<br>1.19/0 | 5.54/7.95<br>7.76/88.4 |
+| **TLM** | 4.36/6.36<br>5.97/90.0 | 15.48/19.40<br>13.49/41.4 | 20.05/20.67<br>5.02/0.1 | 41.57/42.29<br>7.80/0 | 5.68/8.36<br>7.95/85.9 |
 
 
 
