@@ -1,0 +1,29 @@
+exclude: (^.venv/|.snap)
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-toml
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: detect-private-key
+
+    # remove metadata from Jupyter
+  - repo: https://github.com/srstevenson/nb-clean
+    rev: 4.0.1
+    hooks:
+      - id: nb-clean
+        args: [--remove-empty-cells, --preserve-cell-outputs]
+        stages: [pre-commit]
+
+    # linter and formater
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.1
+    hooks:
+      - id: ruff-check
+        types_or: [python, pyi, jupyter]
+        args: [--fix]
+        stages: [pre-commit]
+      - id: ruff-format
+        types_or: [python, pyi, jupyter]
+        stages: [pre-commit]

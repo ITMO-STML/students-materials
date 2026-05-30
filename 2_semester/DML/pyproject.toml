@@ -1,0 +1,97 @@
+[project]
+name = "gmo"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10, <3.11"
+dependencies = [
+    "ipykernel>=7.2.0, <8",
+    "seaborn>=0.13.2, <0.14",
+    "torch>=2.6.0, <2.7",
+    "torchvision>=0.21.0, <0.22",
+    "torchaudio>=2.6.0, <2.7",
+    "sentence-transformers>=5.0, <5.4",
+    "transformers>5.0, <5.4",
+    "pytorch-lightning==2.6.0,<3",
+    "gensim>=4.4.0,<5", "librosa>=0.11.0,<0.12",
+]
+
+[tool.ruff]
+line-length = 200
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 80
+indent-style = "space"
+quote-style = "double"
+skip-magic-trailing-comma = false
+
+[tool.ruff.lint]
+select = [
+      "F",
+      "E",
+      "W",
+      "I",
+      "UP", # Warn if certain things can changed due to newer Python versions
+      "C4", # Catch incorrect use of comprehensions
+      "ISC001", # Implicitly concatenated string literals on one line
+      "ICN", # Use common import conventions
+      "RET", # Return practices
+      "SIM", # Simplification rules
+
+]
+ignore = [
+      "E741",   # allow "l" as a variable name
+      "N803",   # uppercase
+      "RET504",
+      "SIM108"
+]
+task-tags = ["TODO"]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.5.1",
+]
+
+[tool.pixi.pypi-dependencies]
+torch = { version = ">=2.6.0, <2.7", index = "https://download.pytorch.org/whl/cu126" }
+torchvision = { version = ">=0.21.0, <0.22", index = "https://download.pytorch.org/whl/cu126" }
+torchaudio = { version = ">=2.6.0, <2.7", index = "https://download.pytorch.org/whl/cu126" }
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[tool.pixi.environments]
+default = { solve-group = "default" }
+dev = { features = ["dev"], solve-group = "default" }
+
+[tool.pixi.tasks]
