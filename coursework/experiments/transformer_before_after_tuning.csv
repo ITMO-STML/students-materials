@@ -1,0 +1,3 @@
+modality,architecture,d_model,num_layers,dropout,lr,sentiment_macro_f1,emotion_macro_f1
+text,Transformer (default),128,2,0.3,0.001,0.579,0.402
+text,Transformer (tuned),128,2,0.1,0.0005,0.602,0.413

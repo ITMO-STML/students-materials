@@ -1,0 +1,7 @@
+modality,architecture,input_dim,n_params,epochs_trained,sentiment_macro_f1,sentiment_acc2,emotion_macro_f1,emotion_mean_auc
+text,BiLSTM,300,474377,6,0.405,0.716,0.313,0.591
+text,CNN1D,300,314057,7,0.571,0.793,0.403,0.683
+text,Transformer,300,321161,6,0.579,0.797,0.402,0.673
+audio,BiLSTM,74,242953,11,0.379,0.608,0.312,0.562
+audio,CNN1D,74,97097,18,0.404,0.665,0.339,0.61
+audio,Transformer,74,292233,11,0.444,0.686,0.365,0.628

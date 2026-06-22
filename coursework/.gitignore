@@ -1,0 +1,22 @@
+
+data/raw/
+data/processed/
+*.pkl
+*.hdf5
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Виртуальное окружение
+.venv/
+venv/
+env/
+
+# IDE и OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

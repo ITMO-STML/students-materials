@@ -1,0 +1,7 @@
+model,modalities,n_params,epochs_trained,sentiment_macro_f1,sentiment_acc2,emotion_macro_f1,emotion_mean_auc
+Best baseline (GloVe FFN),text only,111113,17,0.589,0.794,0.409,0.685
+Transformer tuned,text only,321161,8,0.602,,0.413,0.686
+Transformer (default),audio only,292233,11,0.444,0.686,0.362,0.628
+Late fusion,text + audio,612105,8,0.577,0.773,0.424,0.705
+Early fusion,text + audio,330633,8,0.597,0.795,0.418,0.702
+Cross-modal attention,text + audio,744713,9,0.6,0.801,0.42,0.704

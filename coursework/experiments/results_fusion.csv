@@ -1,0 +1,4 @@
+model,modalities,n_params,epochs_trained,sentiment_macro_f1,sentiment_acc2,emotion_macro_f1,emotion_mean_auc
+Late fusion,text + audio,612105,8,0.577,0.773,0.424,0.705
+Early fusion,text + audio,330633,8,0.597,0.795,0.418,0.702
+Cross-modal attention,text + audio,744713,9,0.6,0.801,0.42,0.704

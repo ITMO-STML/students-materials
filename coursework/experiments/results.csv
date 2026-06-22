@@ -1,0 +1,5 @@
+modality,feature,input_dim,n_params,epochs_trained,sentiment_macro_f1,sentiment_acc2,emotion_macro_f1,emotion_mean_auc
+text,GloVe (mean-pool),300,111113,17,0.589,0.794,0.409,0.685
+text,TF-IDF,2000,546313,6,0.553,0.781,0.4,0.671
+audio,MFCC (mean+std),76,53769,16,0.407,0.625,0.358,0.605
+audio,Prosody+VQ (mean+std),72,52745,9,0.444,0.7,0.377,0.643
