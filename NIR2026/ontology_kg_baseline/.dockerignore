@@ -1,0 +1,13 @@
+venv/
+**pycache**/
+.idea/
+.vscode/
+
+outputs/
+
+*.pyc
+*.pyo
+*.pyd
+
+.git
+.gitignore

@@ -1,0 +1,30 @@
+[
+    {
+        "id": "1",
+        "text": "Marie Curie was born in Warsaw and won the Nobel Prize in Physics.",
+        "gold_triples": [
+            [
+                "Marie Curie",
+                "bornIn",
+                "Warsaw"
+            ],
+            [
+                "Marie Curie",
+                "wonAward",
+                "Nobel Prize in Physics"
+            ]
+        ],
+        "predicted_triples": [
+            [
+                "Marie Curie",
+                "bornIn",
+                "Warsaw"
+            ],
+            [
+                "Marie Curie",
+                "wonAward",
+                "Nobel Prize"
+            ]
+        ]
+    }
+]
