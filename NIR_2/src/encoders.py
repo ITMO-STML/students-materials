@@ -136,7 +136,7 @@ class EncoderPool:
         self, query: str, d_plus: str, d_minus: str
     ) -> tuple[float, dict[str, float]]:
         """
-        δ = sim(q, d⁻) / sim(q, d⁺)  — как в исходных слайдах.
+        δ = sim(q, d⁻) / sim(q, d⁺) 
 
         Считаем для каждого энкодера отдельно, потом усредняем δ (а НЕ
         усредняем числитель/знаменатель отдельно, чтобы избежать
