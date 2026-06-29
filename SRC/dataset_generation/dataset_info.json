@@ -1,0 +1,27 @@
+{
+    "cpmv_video_dpo": {
+        "file_name": "dpo.json",
+        "formatting": "sharegpt",
+        "ranking": true,
+        "columns": {
+            "instruction": "conversations",
+            "chosen": "chosen",
+            "rejected": "rejected",
+            "videos": "video"
+        }
+    },
+    "cpmv_video_sft": {
+        "file_name": "sft.json",
+        "formatting": "sharegpt",
+        "columns": {
+            "messages": "messages",
+            "videos": "videos"
+        },
+        "tags": {
+            "role_tag": "role",
+            "content_tag": "content",
+            "user_tag": "user",
+            "assistant_tag": "assistant"
+        }
+    }
+}

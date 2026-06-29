@@ -1,0 +1,12 @@
+### model
+model_name_or_path: openbmb/MiniCPM-V-4_5 # Original model path, can be local
+adapter_name_or_path: saves/minicpmv4_5/lora/sft # Path to saved LoRA model
+template: minicpm_v
+finetuning_type: lora
+trust_remote_code: true
+
+### export
+export_dir: models/minicpmv4_5_lora_sft
+export_size: 2
+export_device: cpu
+export_legacy_format: false
