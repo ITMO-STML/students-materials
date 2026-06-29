@@ -1,0 +1,28 @@
+# Core
+torch>=2.1.0
+transformers>=4.45.0
+sentence-transformers>=3.0.0
+FlagEmbedding>=1.2.0
+
+# LLM serving (опционально, для быстрой генерации)
+vllm>=0.5.0 ; platform_system == "Linux"
+
+# Russian NLP
+razdel>=0.5.0          # токенизация для BM25
+pymorphy3>=2.0.0       # лемматизация (опционально)
+
+# Retrieval utils
+rank-bm25>=0.2.2
+faiss-cpu>=1.7.4       # для δ-метрики на большом корпусе
+
+# Data / config
+datasets>=2.20.0
+pyyaml>=6.0
+pydantic>=2.0
+jsonlines>=4.0.0
+tqdm>=4.66.0
+numpy>=1.24
+pandas>=2.0
+
+# Dev / inspection
+rich>=13.0             # красивые логи для отладки

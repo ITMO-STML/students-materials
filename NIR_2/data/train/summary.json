@@ -1,0 +1,119 @@
+{
+  "config": {
+    "cap_negatives": 3
+  },
+  "split": {
+    "n_train": 99,
+    "n_test": 199,
+    "n_unused": 1798,
+    "train_tags": {
+      "1-hop": 72,
+      "multi-constraint": 13,
+      "reverse": 1,
+      "no-answer": 9,
+      "multi-hop": 2,
+      "0-hop": 1,
+      "exclusion": 1
+    },
+    "test_tags": {
+      "multi-constraint": 26,
+      "1-hop": 145,
+      "qualifier-constraint": 1,
+      "no-answer": 17,
+      "exclusion": 1,
+      "multi-hop": 5,
+      "0-hop": 1,
+      "ranking": 1,
+      "reverse": 1,
+      "duration": 1
+    }
+  },
+  "corpus": {
+    "n_docs": 1987
+  },
+  "test": {
+    "n_queries": 199
+  },
+  "raw_inputs": {
+    "cn": 138,
+    "bm25": 500,
+    "gp": 50
+  },
+  "intersections": {
+    "train_with_cn": 76,
+    "train_with_bm25": 96,
+    "train_with_gp": 19,
+    "train_cn_and_gp": 18,
+    "pct_train_with_cn": 76.8,
+    "pct_train_with_bm25": 97.0,
+    "pct_train_with_gp": 19.2,
+    "pct_train_cn_and_gp": 18.2
+  },
+  "conditions": {
+    "A": {
+      "n_records": 99,
+      "n_unique_qids": 99,
+      "n_qids_with_any_negative": 0,
+      "n_qids_without_negatives": 99,
+      "pct_qids_with_negatives": 0.0,
+      "mean_negatives_per_record": 0,
+      "median_negatives_per_record": 0,
+      "max_negatives_per_record": 0,
+      "mean_variants_per_qid": 1,
+      "max_variants_per_qid": 1,
+      "missing_qids": []
+    },
+    "B": {
+      "n_records": 99,
+      "n_unique_qids": 99,
+      "n_qids_with_any_negative": 96,
+      "n_qids_without_negatives": 3,
+      "pct_qids_with_negatives": 97.0,
+      "mean_negatives_per_record": 2.91,
+      "median_negatives_per_record": 3,
+      "max_negatives_per_record": 3,
+      "mean_variants_per_qid": 1,
+      "max_variants_per_qid": 1,
+      "missing_qids": []
+    },
+    "C": {
+      "n_records": 99,
+      "n_unique_qids": 99,
+      "n_qids_with_any_negative": 76,
+      "n_qids_without_negatives": 23,
+      "pct_qids_with_negatives": 76.8,
+      "mean_negatives_per_record": 1.29,
+      "median_negatives_per_record": 1,
+      "max_negatives_per_record": 3,
+      "mean_variants_per_qid": 1,
+      "max_variants_per_qid": 1,
+      "missing_qids": []
+    },
+    "D": {
+      "n_records": 146,
+      "n_unique_qids": 99,
+      "n_qids_with_any_negative": 0,
+      "n_qids_without_negatives": 99,
+      "pct_qids_with_negatives": 0.0,
+      "mean_negatives_per_record": 0,
+      "median_negatives_per_record": 0.0,
+      "max_negatives_per_record": 0,
+      "mean_variants_per_qid": 1.47,
+      "max_variants_per_qid": 4,
+      "missing_qids": []
+    },
+    "E": {
+      "n_records": 146,
+      "n_unique_qids": 99,
+      "n_qids_with_any_negative": 76,
+      "n_qids_without_negatives": 23,
+      "pct_qids_with_negatives": 76.8,
+      "mean_negatives_per_record": 1.33,
+      "median_negatives_per_record": 1.0,
+      "max_negatives_per_record": 3,
+      "mean_variants_per_qid": 1.47,
+      "max_variants_per_qid": 4,
+      "missing_qids": []
+    }
+  }
+}

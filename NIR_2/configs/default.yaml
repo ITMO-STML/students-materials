@@ -1,0 +1,95 @@
+# Конфигурация для MVP-прогона
+# Все гиперпараметры в одном месте, чтобы ablations было удобно запускать
+
+llm:
+  # Локальная LLM для генерации (фактов, контрфактов, перефраз).
+  # Решение: Qwen2.5-7B-Instruct — поддерживает русский, лёгкий по VRAM (~16GB в bf16,
+  # ~5GB в 4-bit), быстро итерируется. Если результаты Фазы 0 окажутся плохими —
+  # подумаем про 14B или Qwen3.
+  model_name: "Qwen/Qwen2.5-7B-Instruct"
+  backend: "llama_cpp"         # llama_cpp (Windows) | ollama | transformers | vllm
+  gguf_path: "W:/models/qwen2.5-7b-q4.gguf"
+  n_gpu_layers: -1             # -1 = все слои на GPU
+  n_ctx: 4096
+  ollama_model: "qwen2.5:7b"
+  ollama_base_url: "http://localhost:11434"
+  max_new_tokens: 1024
+  temperature: 0.7
+  top_p: 0.9
+  load_in_4bit: true
+  # --- judge ---
+  # Режим LLM-судьи. "cot" — пошаговое рассуждение (по умолчанию, точнее
+  # на числах/датах; стоимость ~300 токенов/вызов). "fast" — одно слово
+  # Да/Нет (дешевле, но в Фазе 0 показал 48-61% на контрфактах).
+  judge_mode: "cot"
+  judge_temperature: 0.0
+  judge_max_new_tokens: 8         # для режима fast
+  judge_cot_max_new_tokens: 320   # для режима cot
+
+# Что мы будем дообучать (используется НЕ в этом MVP, а на Фазе 7).
+# Записываем здесь, чтобы зафиксировать решение.
+retriever_to_train:
+  model_name: "ai-forever/ru-en-RoSBERTa"
+  reason: "Russian-specialized, хороший старт на родном корпусе"
+
+encoders:
+  # Ансамбль для δ-метрики. Веса нормируются автоматически.
+  # ПРИНЦИП: ни один из них не должен быть моделью, которую мы потом обучаем,
+  # иначе вернётся selection bias.
+  ensemble:
+    - name: "intfloat/multilingual-e5-large"
+      weight: 1.0
+      query_prefix: "query: "
+      passage_prefix: "passage: "
+    - name: "BAAI/bge-m3"
+      weight: 1.0
+      query_prefix: ""
+      passage_prefix: ""
+  device: "cuda"
+  batch_size: 32
+  max_length: 512
+
+cross_encoder:
+  # Для финальной верификации релевантности
+  model_name: "BAAI/bge-reranker-v2-m3"
+  device: "cuda"
+  batch_size: 16
+  relevance_threshold: 0.5    # < threshold → не релевантно
+  irrelevance_threshold: 0.2  # < threshold → ТОЧНО негатив
+
+bm25:
+  # Для отсева лексических дубликатов d⁺
+  similarity_max: 0.6         # выше — слишком лексически похож, дубль
+
+negatives:
+  # Параметры конвейера CN (counterfactual negatives)
+  max_facts_per_doc: 5         # сколько фактов извлекать
+  max_mutations_per_fact: 1    # сколько негативов на один факт
+  delta_buckets:
+    # Стратифицированные бакеты сложности (вместо одного диапазона)
+    - {name: "easy",   min: 0.30, max: 0.55, target_per_query: 1}
+    - {name: "medium", min: 0.55, max: 0.75, target_per_query: 2}
+    - {name: "hard",   min: 0.75, max: 0.92, target_per_query: 2}
+  min_criticality: 2           # факт должен быть достаточно важным для мутации (1-5)
+
+positives:
+  # Параметры конвейера GP (gradient positives) — древовидная генерация
+  branches_per_target: 3       # сколько кандидатов генерируем на один уровень
+  similarity_targets:
+    # Целевые уровни близости к оригинальному d⁺
+    - {name: "near",   target: 0.90, tolerance: 0.04}
+    - {name: "mid",    target: 0.78, tolerance: 0.04}
+    - {name: "far",    target: 0.65, tolerance: 0.05}
+  must_remain_positive: true   # проверять CE/LLM-judge, что всё ещё ответ на q
+
+io:
+  input_data: "data/sample_rubq.jsonl"
+  output_dir: "outputs/"
+  negatives_file: "negatives.jsonl"
+  positives_file: "positives.jsonl"
+  log_file: "run.log"
+
+run:
+  seed: 42
+  limit: null         # ограничить число запросов (для отладки)
+  verbose: true
