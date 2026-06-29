@@ -466,7 +466,7 @@ def compute_summary(
 
 
 # ──────────────────────────────────────────────────────────────────────
-# Report.md (КОНТРАКТ: каждый пайплайн обязан писать report.md)
+# Report.md (sddsdadsadasdsadsdadasdasdadsaasdsadsadasdadsadasd)
 # ──────────────────────────────────────────────────────────────────────
 
 def write_report(
