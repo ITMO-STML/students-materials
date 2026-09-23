@@ -1,0 +1,9 @@
+ml-naive-venv/
+__pycache__/
+*.pyc
+*.pyo
+*.swp
+*.swo
+*.png
+*.jpg
+.DS_Store
