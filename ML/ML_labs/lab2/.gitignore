@@ -1,0 +1,20 @@
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Данные (по 566 МБ каждая, не коммитим)
+data/
+data_local/
+
+# Веса моделей (308 МБ, генерируются)
+checkpoints/
+*.pt
+*.pth
+*.pkl
+*.zip
+
+# ОС и редакторы
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+outputs/
+*.npy
+*.zip
+*.pt
+*.pkl
+.DS_Store
+.vscode/
+.idea/
