@@ -1,8 +1,4 @@
-"""Компактный class-conditional U-Net для DDPM на MNIST."""
-from __future__ import annotations
-
 import math
-
 import torch
 from torch import Tensor, nn
 
@@ -10,17 +6,16 @@ from torch import Tensor, nn
 class SinusoidalTimeEmbedding(nn.Module):
     def __init__(self, dim: int) -> None:
         super().__init__()
-        self.dim = dim
+        self.dim = dim  # 128
 
     def forward(self, t: Tensor) -> Tensor:
         half = self.dim // 2
-        freqs = torch.exp(-math.log(10000) * torch.arange(half, device=t.device) / half)
+        freqs = torch.exp(-math.log(10000) * torch.arange(half, device=t.device) / half) # ось частот от 1 до 1/10000
         args = t[:, None].float() * freqs[None, :]
         return torch.cat([args.sin(), args.cos()], dim=-1)
 
 
 class ConvBlock(nn.Module):
-    """Conv -> GroupNorm -> SiLU + time/class эмбеддинг."""
 
     def __init__(self, in_ch: int, out_ch: int, emb_dim: int) -> None:
         super().__init__()
@@ -39,7 +34,6 @@ class ConvBlock(nn.Module):
 
 
 class UNet(nn.Module):
-    """U-Net 3 уровня. Вход: 1 + class_emb канал (class-embedding конкатенируется)."""
 
     def __init__(self, base_ch: int = 32, time_emb: int = 128, class_emb: int = 4, num_classes: int = 10) -> None:
         super().__init__()
@@ -48,7 +42,7 @@ class UNet(nn.Module):
             SinusoidalTimeEmbedding(time_emb),
             nn.Linear(time_emb, time_emb),
             nn.SiLU(),
-            nn.Linear(time_emb, time_emb),
+            nn.Linear(time_emb, time_emb), # [N, 128]
         )
         self.label_emb = nn.Embedding(num_classes, class_emb)
 
@@ -67,9 +61,9 @@ class UNet(nn.Module):
 
     def forward(self, x: Tensor, t: Tensor, labels: Tensor) -> Tensor:
         emb = self.time_mlp(t)
-        label = self.label_emb(labels)[:, :, None, None]
-        label = label.expand(-1, -1, x.shape[2], x.shape[3])
-        x = torch.cat([x, label], dim=1)
+        label = self.label_emb(labels)[:, :, None, None] # [N, 4, 1, 1]
+        label = label.expand(-1, -1, x.shape[2], x.shape[3]) # [N, 4, 28, 28]
+        x = torch.cat([x, label], dim=1)  #[N, 5, 28, 28]
 
         h1 = self.enc1(x, emb)              # 28x28
         h2 = self.enc2(self.pool(h1), emb)  # 14x14

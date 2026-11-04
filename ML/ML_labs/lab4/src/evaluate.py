@@ -15,13 +15,13 @@ from diffusion import Diffusion
 from model import UNet
 
 OUTPUTS_DIR = Path("/app/outputs")
-N_PER_CLASS = 100   # сколько генерировать на каждый класс
+N_PER_CLASS = 100   # столько генерировать на каждый класс
 CLASSIFIER_EPOCHS = 3
 T_DIFF = 1000
 
 
 class SimpleCNN(nn.Module):
-    """Маленький CNN для классификации MNIST."""
+    """CNN для классификации MNIST"""
 
     def __init__(self) -> None:
         super().__init__()
@@ -45,7 +45,6 @@ class SimpleCNN(nn.Module):
 
 
 def train_classifier(device: torch.device) -> nn.Module:
-    """Обучает CNN на MNIST, возвращает обученную модель."""
     ckpt = OUTPUTS_DIR / "classifier.pt"
 
     model = SimpleCNN().to(device)
@@ -81,53 +80,45 @@ def train_classifier(device: torch.device) -> nn.Module:
 
 
 def run_evaluation(device: torch.device) -> None:
-    """Генерирует, оценивает их классификатором, сохраняет метрики."""
+
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
 
-    # 1. Классификатор-оценщик
     classifier = train_classifier(device)
     classifier.eval()
 
-    # 2. Загрузка DDPM
     ddpm = UNet().to(device)
     ddpm.load_state_dict(torch.load(OUTPUTS_DIR / "checkpoint.pt", map_location=device, weights_only=True))
     ddpm.eval()
     diffusion = Diffusion(T=T_DIFF, device=device)
 
-    # 3. Генерация по классам
+    # Генерация по классам
     all_images = []
     all_labels = []
     for cls in range(10):
         labels = torch.full((N_PER_CLASS,), cls, dtype=torch.long, device=device)
         samples = diffusion.sample(ddpm, N_PER_CLASS, labels)
-        # денормализация [-1, 1] -> [0, 1]
-        samples = (samples + 1.0) / 2.0
+        samples = (samples + 1.0) / 2.0 # [-1, 1] в [0, 1]
         all_images.append(samples.cpu())
         all_labels.extend([cls] * N_PER_CLASS)
 
     images = torch.cat(all_images, dim=0)
     labels_np = np.array(all_labels)
 
-    # 4. Классификация сгенерированных
+    # Классификация сгенерированных кртинок
     preds = []
     with torch.no_grad():
         for i in range(0, len(images), 256):
             batch = images[i:i + 256].to(device)
-            # классификатор ожидает нормализацию [-1, 1], как при обучении
-            batch = batch * 2.0 - 1.0
+            batch = batch * 2.0 - 1.0 # [-1, 1]
             preds.append(classifier(batch).argmax(1).cpu().numpy())
     preds_np = np.concatenate(preds)
 
-    # 5. Метрики
-    report = classification_report(
-        labels_np, preds_np, target_names=[str(i) for i in range(10)], digits=4
-    )
+    report = classification_report(labels_np, preds_np, target_names=[str(i) for i in range(10)], digits=4)
     cm = confusion_matrix(labels_np, preds_np)
 
     print("\nClassification report:")
     print(report)
 
-    # 6. Сохранение
     (OUTPUTS_DIR / "classification_report.txt").write_text(report, encoding="utf-8")
 
     with (OUTPUTS_DIR / "confusion_matrix.csv").open("w", newline="", encoding="utf-8") as f:
@@ -136,5 +127,4 @@ def run_evaluation(device: torch.device) -> None:
         for i, row in enumerate(cm):
             writer.writerow([str(i)] + row.tolist())
 
-    # сохраним сами сгенерированные картинки (сетка) для отчёта
     torch.save({"images": images, "labels": labels_np}, OUTPUTS_DIR / "generated.pt")

@@ -1,14 +1,7 @@
-"""Прямой и обратный процесс диффузии (DDPM)."""
-from __future__ import annotations
-
-from typing import Tuple
-
 import torch
 from torch import Tensor
 
-
 class Diffusion:
-    """DDPM с линейным beta-расписанием."""
 
     def __init__(self, T: int = 1000, device: torch.device = torch.device("cpu")) -> None:
         self.T = T
@@ -19,12 +12,10 @@ class Diffusion:
         self.alpha_bar = torch.cumprod(self.alpha, dim=0)
 
     def q_sample(self, x0: Tensor, t: Tensor, noise: Tensor) -> Tensor:
-        """Forward process: x_t = sqrt(alpha_bar_t) * x0 + sqrt(1 - alpha_bar_t) * noise."""
-        a_bar = self.alpha_bar[t].view(-1, 1, 1, 1)
+        a_bar = self.alpha_bar[t].view(-1, 1, 1, 1)  # [batch_size, 1, 1, 1]
         return a_bar.sqrt() * x0 + (1.0 - a_bar).sqrt() * noise
 
     def p_sample(self, model_out: Tensor, x_t: Tensor, t: Tensor) -> Tensor:
-        """Один шаг обратного процесса."""
         beta_t = self.beta[t].view(-1, 1, 1, 1)
         alpha_t = self.alpha[t].view(-1, 1, 1, 1)
         a_bar = self.alpha_bar[t].view(-1, 1, 1, 1)

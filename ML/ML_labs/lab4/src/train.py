@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import csv
 import sys
 from pathlib import Path
@@ -12,6 +10,9 @@ from data import get_dataloaders
 from diffusion import Diffusion
 from model import UNet
 
+from evaluate import run_evaluation
+from report import build_report
+
 OUTPUTS_DIR = Path("/app/outputs")
 DATA_DIR = Path("/app/data")
 
@@ -20,7 +21,6 @@ BATCH_SIZE = 128
 LR = 2e-4
 T_DIFF = 1000
 SEED = 42
-
 
 def set_seed(seed: int) -> None:
     torch.manual_seed(seed)
@@ -50,9 +50,9 @@ def train_ddpm(device: torch.device) -> None:
                 x, y = x.to(device), y.to(device)
                 t = torch.randint(0, T_DIFF, (x.size(0),), device=device)
                 noise = torch.randn_like(x)
-                x_t = diffusion.q_sample(x, t, noise)
+                x_t = diffusion.q_sample(x, t, noise) # зашумлённая картинка
 
-                pred = model(x_t, t, y)
+                pred = model(x_t, t, y) # предсказанный шум
                 loss = loss_fn(pred, noise)
 
                 optimizer.zero_grad()
@@ -67,8 +67,6 @@ def train_ddpm(device: torch.device) -> None:
             print(f"Epoch {epoch:02d}/{EPOCHS} | loss={epoch_loss:.4f}")
 
     torch.save(model.state_dict(), OUTPUTS_DIR / "checkpoint.pt")
-    print(f"Чекпоинт сохранён: {OUTPUTS_DIR / 'checkpoint.pt'}")
-
 
 def main() -> None:
 
@@ -78,7 +76,6 @@ def main() -> None:
     print(f"Device: {device}")
     if device.type == "cuda":
         print(f"GPU: {torch.cuda.get_device_name(0)}")
-    print("=" * 60)
 
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
     DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -86,19 +83,8 @@ def main() -> None:
 
     train_ddpm(device)
 
-    # Оценка и отчёт — отдельные модули (Заход 2b).
-    try:
-        from evaluate import run_evaluation
-        run_evaluation(device)
-    except ImportError:
-        print("[WARN] evaluate.py не найден — пропускаем оценку")
-
-    try:
-        from report import build_report
-        build_report()
-    except ImportError:
-        print("[WARN] report.py не найден — пропускаем отчёт")
-
+    run_evaluation(device)
+    build_report()
 
 if __name__ == "__main__":
     main()

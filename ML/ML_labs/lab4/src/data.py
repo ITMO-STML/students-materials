@@ -1,15 +1,10 @@
-"""Загрузка MNIST и подготовка DataLoader'ов."""
-from __future__ import annotations
-
 from pathlib import Path
 from typing import Tuple
 
-import torch
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
 datasets.MNIST.mirrors = ["https://ossci-datasets.s3.amazonaws.com/mnist/"]
-
 
 DATA_DIR = Path("/app/data")
 IMAGE_SIZE = 28
