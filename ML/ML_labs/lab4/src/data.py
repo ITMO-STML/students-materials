@@ -12,10 +12,10 @@ NUM_CLASSES = 10
 
 
 def get_dataloaders(batch_size: int = 128, num_workers: int = 2) -> Tuple[DataLoader, DataLoader]:
-    """Возвращает train/test DataLoader'ы MNIST с нормализацией в [-1, 1]."""
+
     transform = transforms.Compose([
         transforms.ToTensor(),
-        transforms.Normalize((0.5,), (0.5,)),
+        transforms.Normalize((0.5,), (0.5,)), # в [-1, 1]
     ])
 
     train_ds = datasets.MNIST(root=str(DATA_DIR), train=True, download=True, transform=transform)

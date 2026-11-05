@@ -48,9 +48,9 @@ def train_classifier(device: torch.device) -> nn.Module:
     ckpt = OUTPUTS_DIR / "classifier.pt"
 
     model = SimpleCNN().to(device)
-    if ckpt.exists():
-        model.load_state_dict(torch.load(ckpt, map_location=device, weights_only=True))
-        return model
+    # if ckpt.exists():
+    #     model.load_state_dict(torch.load(ckpt, map_location=device, weights_only=True))
+    #     return model
 
     train_loader, _ = get_dataloaders(batch_size=128, num_workers=0)
     optimizer = Adam(model.parameters(), lr=1e-3)
@@ -74,6 +74,18 @@ def train_classifier(device: torch.device) -> nn.Module:
 
         print(f"Classifier epoch {epoch}/{CLASSIFIER_EPOCHS} | "
               f"loss={running / len(train_loader):.4f} | acc={correct / total:.4f}")
+
+    # Оценка на тесте
+    _, test_loader = get_dataloaders(batch_size=128, num_workers=0)
+    model.eval()
+    correct, total = 0, 0
+    with torch.no_grad():
+        for x, y in test_loader:
+            x, y = x.to(device), y.to(device)
+            pred = model(x).argmax(1)
+            correct += (pred == y).sum().item()
+            total += y.size(0)
+    print(f"Classifier test accuracy: {correct / total:.4f}")    
 
     torch.save(model.state_dict(), ckpt)
     return model
