@@ -1,0 +1,10 @@
+defaults:
+  - external_eval
+  - _self_
+
+external_dataset: asvspoof5_dev
+expected_bonafide: 31334
+expected_per_attack: 13702
+include_oy: true
+adaptation_run: logs/runs/2026-10-18/w2v_oy_steering_v3
+clear_run: null

@@ -1,0 +1,13 @@
+stage: smoke
+device: cuda:4
+inventory: logs/alm/preparation/checkpoint_inventory.json
+source_package: /home/jovyan/dvirnyak/rl_antiskuf/unified_training/src/models/SALMON
+llama_path: /mnt/shared_ru.ml.SZ-2_000049/dvirnyak/model_checkpoints/llm/vicuna-7b-v1.1
+whisper_path: /mnt/shared_ru.ml.SZ-2_000049/dvirnyak/model_checkpoints/whisper/whisper-large-v2
+manifest: logs/runs/2026-10-09/sae_a21_pilot_13-48-02/manifest.json
+prompt: "USER: <SpeechHere> You are an audio security expert specialized in classifying audios as spoofed or bonafide. You are tasked with detecting whether an audio is spoofed (generated artificially) or bonafide (genuine). Is the provided audio spoof (deepfake) or bonafide (genuine)? Give response in format: Final Answer: [spoof/bonafide]. Do not use markdown or any other formatting and output the answer as specified.\nASSISTANT:"
+batch_size: 4
+layers: [8, 16, 24]
+strengths: [-0.5, 0.0, 0.5, 1.0]
+scopes: [audio, text, both]
+resume_dir: null

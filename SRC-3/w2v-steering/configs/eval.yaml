@@ -1,0 +1,9 @@
+defaults:
+  - main
+  - evaluation: checkpoint
+  - _self_
+
+evaluation:
+  output_dir: null
+  device: null
+  cpu_threads: 4

@@ -1,0 +1,24 @@
+defaults:
+  - midsteer_a21
+  - _self_
+
+midsteer_run: logs/runs/2026-10-09/midsteer_a21_14-35-11
+methods:
+  [
+    baseline,
+    dense,
+    sae,
+    reconstruction,
+    random_sae,
+    finetune_a21,
+    finetune_guarded,
+    midsteer_affine,
+    midsteer_anchored_gated,
+  ]
+batch_size: 4
+audio_workers: 4
+chunk_size: 1024
+smoke_per_attack: 4
+smoke_only: false
+smoke_score_atol: 0.0001
+resume_dir: null

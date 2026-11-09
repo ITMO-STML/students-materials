@@ -1,0 +1,10 @@
+# @package _global_
+defaults:
+  - override /steering: voxenes
+  - _self_
+
+evaluation:
+  backend: voxenes
+  extract: false
+
+exp_name: w2v_voxenes_original_english_v1

@@ -1,0 +1,9 @@
+# @package _global_
+defaults:
+  - override /steering: asvspoof5_dev
+  - _self_
+
+evaluation:
+  backend: asvspoof5_dev
+
+exp_name: w2v_asvspoof5_full_dev

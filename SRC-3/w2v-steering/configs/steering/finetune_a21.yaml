@@ -1,0 +1,13 @@
+defaults:
+  - a21_pilot
+  - _self_
+
+reference_run: logs/runs/2026-10-09/sae_a21_pilot_13-48-02
+epochs: 5
+learning_rate: 1.0e-6
+weight_decay: 0.01
+train_batch_size: 2
+accumulation_steps: 8
+gradient_checkpointing: true
+bf16: true
+smoke_steps: 2

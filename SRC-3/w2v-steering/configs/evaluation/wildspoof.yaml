@@ -1,0 +1,13 @@
+# @package _global_
+defaults:
+  - override /steering: external_eval
+  - _self_
+
+evaluation:
+  backend: external
+
+exp_name: w2v_wildspoof2026_transfer
+
+steering:
+  external_dataset: wildspoof_2026
+  external_root: /home/jovyan/mnt_shared/antispoofing_datasets/wildspoof_2026

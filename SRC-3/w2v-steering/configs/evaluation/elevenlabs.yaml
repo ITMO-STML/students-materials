@@ -1,0 +1,13 @@
+# @package _global_
+defaults:
+  - override /steering: external_eval
+  - _self_
+
+evaluation:
+  backend: external
+
+exp_name: w2v_elevenlabs_transfer
+
+steering:
+  external_dataset: elevenlabs
+  external_root: /home/jovyan/mnt_shared/antispoofing_datasets/data_airi

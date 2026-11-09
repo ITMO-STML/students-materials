@@ -1,0 +1,22 @@
+defaults:
+  - finetune_a21
+  - _self_
+
+# Metadata preparation is the safe default; fit requires an explicit stage.
+stage: prepare
+prepare_only: false
+resume_dir: null
+mode: projected # target | replay | projected, with otherwise identical settings
+retain_per_generator: 128
+replay_weight: 1.0
+distillation_weight: 1.0
+temperature: 2.0
+learning_rate: 1.0e-4
+epochs: 5
+train_batch_size: 1
+accumulation_steps: 16
+gradient_checkpointing: false # Deterministic eval-mode backward; no training-mode buffers.
+bf16: false
+smoke_steps: 2
+# Extra per-generator dev guard; existing pooled and bona fide guards also apply.
+max_generator_eer_degradation: 0.02

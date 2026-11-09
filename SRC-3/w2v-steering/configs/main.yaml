@@ -1,0 +1,29 @@
+defaults:
+  - paths: default
+  - model: default
+  - data: default
+  - criterion: cross_entropy
+  - training_arguments: default
+  - hydra: default
+  - steering: a21
+  - _self_
+
+seed: 42
+exp_name: baseline
+# Steering experiment: python -m src.steering.run exp_name=sae_a21_smoke
+# Expanded experiment: python -m src.steering.run steering=a21_pilot exp_name=sae_a21_pilot
+# Supervised comparator: python -m src.steering.finetune steering=finetune_a21 exp_name=finetune_a21
+# Covariance steering: python -m src.steering.run_midsteer steering=midsteer_a21 exp_name=midsteer_a21
+# Retention experiment: python -m src.retention_adaptation.run steering=retention_a21 exp_name=clear_retention_a21
+# Evaluation uses configs/eval.yaml: python eval.py evaluation=<preset>
+# Presets: checkpoint, asvspoof5, elevenlabs, wildspoof, voxenes, mlaad.
+# Speaker eval: evaluation=speaker_elevenlabs, speaker_wildspoof or speaker_asvspoof5.
+# Speaker adaptation: python -m src.speaker_steering.run steering=elevenlabs_speaker exp_name=w2v_oy_steering_v3
+# ALM smoke: python -m src.alm_steering.run +alm=default exp_name=alm_smoke
+# ALM pilot: python -m src.alm_steering.pilot +alm=default exp_name=alm_steering_pilot
+# Reasoning ALM: python -m src.alm_reasoning.run --config configs/alm_reasoning/default.yaml
+# Experiment name in that configuration: alm_reasoning_sft_full_eval_v1
+# Native SASV pilot: python -m src.alm_sasv.run --config configs/alm_sasv/default.yaml
+# Experiment name: alm_sasv_reasoning_20260701_v1
+# ALM LoRA: python -m src.alm_adaptation.run +alm=default +alm_finetune=default exp_name=alm_lora_a21
+ckpt_path: '/home/jovyan/iudin/w2v-steering/logs/runs/2026-10-08/baseline_21-42-15/checkpoint-28500'

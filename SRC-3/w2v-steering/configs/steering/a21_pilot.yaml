@@ -1,0 +1,13 @@
+defaults:
+  - a21
+  - _self_
+
+# Approved expanded experiment; base detector remains frozen.
+stage: pilot
+layers: [6, 12, 18]
+sae_train_per_group: 512
+support_per_group: 128
+tune_per_group: 128
+dev_per_group: 64
+test_per_group: 256
+sae_steps: 500

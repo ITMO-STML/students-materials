@@ -1,0 +1,39 @@
+# Bounded smoke defaults; expand budgets only after reviewing the pilot.
+stage: smoke
+checkpoint: logs/runs/2026-10-08/baseline_21-42-15/checkpoint-3000
+device: cpu
+layers: [12] # One-based transformer block outputs, before final encoder normalization.
+sae_train_per_group: 16
+support_per_group: 8
+tune_per_group: 8
+test_per_group: 8
+dev_per_group: 8
+batch_size: 4
+tokens_per_clip: 32
+expansion: 8
+k: 50
+sae_steps: 50
+sae_batch_size: 128
+selected_features: 16
+strengths: [-0.5, 0.0, 0.5, 1.0]
+max_bonafide_degradation: 0.05
+max_dev_eer_degradation: 0.02
+test_attacks:
+  [
+    A17,
+    A18,
+    A19,
+    A20,
+    A21,
+    A22,
+    A23,
+    A24,
+    A25,
+    A26,
+    A27,
+    A28,
+    A29,
+    A30,
+    A31,
+    A32,
+  ]

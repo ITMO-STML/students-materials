@@ -1,0 +1,13 @@
+defaults:
+  - a21_pilot
+  - _self_
+
+reference_run: logs/runs/2026-10-09/sae_a21_pilot_13-48-02
+finetune_run: logs/runs/2026-10-09/finetune_a21_14-03-35
+gradient_checkpointing: false
+ridge: 0.01
+# Predeclared sweep; no transfer labels or scores enter selection.
+strengths: [0.0, 0.25, 0.5, 1.0]
+benchmark_clips: 64
+benchmark_repeats: 5
+benchmark_sae_fit: true

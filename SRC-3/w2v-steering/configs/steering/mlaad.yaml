@@ -1,0 +1,13 @@
+defaults:
+  - external_eval
+  - _self_
+
+external_dataset: mlaad_english
+external_root: /mnt/shared_ru.ml.SZ-2_000049/antispoofing_datasets/MLAAD
+real_root: /mnt/shared_ru.ml.SZ-2_000049/antispoofing_datasets/M_AILABS
+expected_recordings: 64233
+expected_spoof: 36000
+expected_bonafide: 28233
+expected_generators: 36
+include_oy: false
+adaptation_run: logs/runs/2026-10-18/w2v_oy_steering_v3

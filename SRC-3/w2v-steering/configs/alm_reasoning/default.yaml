@@ -1,0 +1,15 @@
+exp_name: alm_reasoning_sft_full_eval_v1
+checkpoint: /mnt/shared_ru.ml.SZ-2_000049/dvirnyak/outputs/salmon_sft_reasoning/run_2026_03_03_08_20/checkpoints/sft_epoch_3_best.pt
+model_config: /mnt/shared_ru.ml.SZ-2_000049/dvirnyak/outputs/salmon_sft_reasoning/run_2026_03_03_08_20/config_resolved.yaml
+source_package: /home/jovyan/dvirnyak/rl_antiskuf/unified_training/src/models/SALMON
+dataset_source: /home/jovyan/dvirnyak/rl_antiskuf/unified_training/src/dataloaders/dataset.py
+llama_path: /mnt/shared_ru.ml.SZ-2_000049/dvirnyak/model_checkpoints/llm/vicuna-7b-v1.1
+whisper_path: /mnt/shared_ru.ml.SZ-2_000049/dvirnyak/model_checkpoints/whisper/whisper-large-v2
+dataset_root: /mnt/shared_ru.ml.SZ-2_000049/antispoofing_datasets/asvspoof5
+support_manifest: logs/runs/2026-10-09/sae_a21_pilot_13-48-02/manifest.json
+output: logs/runs/2026-10-11/alm_reasoning_sft_full_eval_v1
+device: cuda:3
+batch_size: 16
+chunk_size: 128
+max_new_tokens: 256
+seed: 42

@@ -1,0 +1,14 @@
+projection_dim: 128
+spectral_bins: 42
+encoder_channels: 64
+num_classes: 2
+gat_dims: [64, 32]
+pool_ratios: [0.5, 0.5, 0.5, 0.5]
+temperatures: [2.0, 2.0, 100.0, 100.0]
+channel_schedule:
+  - [1, 32]
+  - [32, 32]
+  - [32, 64]
+  - [64, 64]
+  - [64, 64]
+  - [64, 64]

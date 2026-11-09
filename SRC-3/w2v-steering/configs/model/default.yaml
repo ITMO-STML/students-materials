@@ -1,0 +1,7 @@
+defaults:
+  - wav2vec2: xlsr_300m
+  - aasist: default
+  - /criterion@criterion: cross_entropy
+  - _self_
+
+_target_: src.model.model.Wav2Vec2AASIST

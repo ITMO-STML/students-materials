@@ -1,0 +1,208 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = [ "hatchling" ]
+
+[project]
+name = "w2v-steering"
+version = "0.1"
+description = ""
+readme = "README.md"
+authors = [
+    { name = "Artyom Iudin" },
+]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "accelerate>=1.1.0",
+    "codecarbon>=3.2.6,<4",
+    "evaluate>=0.4.6,<0.5",
+    "hydra-core>=1.3.7,<2",
+    "jaxtyping>=0.3.11,<0.4",
+    "python-dotenv>=1.2.3,<2",
+    "scikit-learn>=1.9.1,<2",
+    "torch==2.7.1",
+    "torch-audiomentations>=0.12.0,<0.13",
+    "torchaudio==2.7.1",
+    "torchvision==0.22.1",
+    "trackio>=0.38.0,<0.40",
+    "transformers>=5.3.0,<6",
+]
+[project.urls]
+Source = "https://github.com/Tomas542/w2v-steering"
+
+[dependency-groups]
+dev = [ "prek>=0.5.3,<0.6", "pyrefly==1.3.1", "ruff==0.16.7" ]
+test = [ "pytest>=9.0.3,<10", "pytest-cov>=7.1.0,<8", "pytest-xdist>=3.8.0,<4" ]
+safe = [ "fickling[torch]>=0.1.7,<0.2", "modelaudit[pytorch,safetensors]>=0.2.45,<0.3", "picklescan>=1.0.4,<2" ]
+
+[tool.pixi.environments]
+default = { solve-group = "default" }
+dev = { features = [ "dev" ], solve-group = "default" }
+safe = { features = [ "safe" ], solve-group = "default" }
+test = { features = [ "test" ], solve-group = "default" }
+[tool.pixi.feature.dev.tasks]
+check_fix = { cmd = "ruff check {{path}} --fix; pyrefly check {{path}}", args = [ "path" ] }
+format = { cmd = "ruff check {{path}} --fix && ruff format {{path}}", args = [ "path" ] }
+[tool.pixi.feature.safe.dependencies]
+grype = ">=0.112.0, <1.0"
+[tool.pixi.feature.safe.tasks]
+scan_model = { cmd = "picklescan -p {{path}}; modelaudit {{path}}", args = [ "path" ] }
+scan_envs = { cmd = "grype .pixi/envs" }
+[tool.pixi.pypi-dependencies]
+torch = { version = ">=2.7.1, <2.8", index = "https://download.pytorch.org/whl/cu126" }
+torchaudio = { version = ">=2.7.1, <2.8", index = "https://download.pytorch.org/whl/cu126" }
+torchvision = { version = ">=0.22.1, <0.23", index = "https://download.pytorch.org/whl/cu126" }
+[tool.pixi.workspace]
+channels = [ "conda-forge" ]
+platforms = [ "linux-64" ]
+exclude-newer = "2026-09-15"
+
+[tool.ruff]
+line-length = 120
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "double"
+skip-magic-trailing-comma = false
+docstring-code-line-length = 80
+docstring-code-format = true
+[tool.ruff.lint]
+select = [
+    "A",      # Built-ins shadowing
+    "ANN",    # Annotations
+    "ARG",    # Unused arguments
+    "B",      # Bugs
+    "BLE",    # Exception specified
+    "C4",     # Catch incorrect use of comprehensions
+    "C90",    # Statement complexity
+    "COM",    # Commas
+    "DTZ",    # Datetime use
+    "E",      # Errors
+    "EM",     # Raising exceptions
+    "ERA",    # Commented code
+    "F",      # Formats
+    "FA",     # future annotations
+    "FURB",   # Refubishing
+    "G",      # Logging formatting
+    "I",      # Imports
+    "ICN",    # Use common import conventions
+    "INP",    # __init__.py required
+    "ISC",    # String concatenations
+    "LOG",    # Logging
+    "NPY",    # NumPy things
+    "PD",     # Pandas things
+    "PERF",   # Some performance issues
+    "PGH",    # pygrep parsed
+    "PIE",    # Unnecessary operation
+    "PL",     # Pylint
+    "PLE",    # Errors
+    "PLR",    # Refactor
+    "PLW",    # Warnings
+    "PTH",    # Pathlib instead of os.path
+    "PYI",    # Type hints stubs
+    "Q",      # Quotes
+    "RET",    # Return practices
+    "RSE",    # No comment - no parantesis in raise
+    "RUF",    # Ruff specific rules
+    "S",      # Bandit usage
+    "SIM",    # Code simplifications
+    "SLF",    # No private member access
+    "SLOT",   # __slot__ in certain classes
+    "T10",    # No debugger calls in commited code
+    "T20",    # No prints, only loggings
+    "TC",     # type annotations
+    "TD",     # TODO tags
+    "TID253", # module level imports
+    "UP",     # Warn if certain things can changed due to newer Python versions
+    "W",      # Whitespace warnings
+    "YTT",    # flake8-2020
+]
+ignore = [
+    "ANN002",  # unannotated *args
+    "ANN003",  # unannotated **kwargs
+    "ANN401",  # allow typing.Any
+    "E741",    # ambigous names, like l and other
+    "F722",    # jaxtyping annotations
+    "N803",    # Argument names not only lowercase
+    "NPY002",  # numpy.random allowed
+    "PERF203", # try-except in loop
+    "PLC0415", # not top-level imports
+    "PLR09",   # too many rules have no specified limits, so either useless, or unusable
+    "PLR2004", # allow magic numbers for comparison
+    "RET504",  # Assign before return
+    "S101",    # allow asserts
+    "TD002",   # no author in TODO
+    "TD003",   # no links in TODO
+]
+task-tags = [ "TODO" ]
+[tool.ruff.lint.extend-per-file-ignores]
+"src/utils.py" = [ "I001" ]  # Impots not on top for monkey patch
+"*.ipynb" = [ "T201" ]  # Print inside jupyter notebooks
+
+[tool.repo-review]
+ignore = [
+    "MY",    # no use of mypy, ruff + basedpyright
+    "GH",    # no use of github actions
+    "PC",    # prek instead of pre-commit
+    "PP002", # no build system
+    "PP004", # uppercap python for reproducable env
+    "PP301", # no pytest
+    "PY003", # no license file
+    "PY004", # no docs file
+    "PY005", # no test folder
+    "PY006", # prek instead of pre-commit
+    "PY007", # uv doesn't have task runner
+]
+
+[tool.pyproject-fmt]
+indent = 4
+column_width = 120
+generate_python_version_classifiers = false
+table_format = "long"
+collapse_tables = [ "project.authors" ]
+no_print_diff = true
+
+[tool.pyrefly]
+project-includes = [ "src", "notebook", "tests" ]
+search-path = [ ".", "src" ]
+site-package-path = [
+    ".pixi/envs/default/lib/python3.12/site-packages",
+    ".pixi/envs/test/lib/python3.12/site-packages",
+]
+python-platform = "linux"
+python-version = "3.12"
+python-interpreter-path = ".pixi/envs/default/bin/python3"
+preset = "strict"
+min-severity = "error"
+check-unannotated-defs = true
+# ALM runtimes use the upstream project’s separate environment.
+ignore-missing-imports = [ "soundfile", "peft" ]
+[tool.pyrefly.errors]
+no-any-return = "warn"  # pytorch modules return Any
+redundant-cast = "warn"
+unannotated-return = "error"
+unused-type-ignore = "error"
+unused-coroutine = "error"
+pytorch-efficiency-lints = "warn"
+bad-unpacking = "warn"  # init classes with hydra config using dict unpacking
+bad-argument-type = "warn"
+bad-index = "warn"
+implicit-any-empty-container = "warn"
+unsupported-operation = "warn"
+missing-argument = "warn"
+not-iterable = "warn"
+missing-attribute = "warn"
+
+[tool.interrogate]
+ignore-init-module = true
+ignore-magic = true
+ignore-semiprivate = true
+ignore-private = true
+ignore-property-decorators = true
+ignore-module = true
+ignore-nested-functions = true
+ignore-nested-classes = true
+ignore-overloaded-functions = true
+ignore-regex = [ "^.*_step$", "^configure_optimizers$", "^forward$", "^setup$", "^prepare$", "^.*_dataloader" ]
+style = "google"
+fail-under = 60
+verbose = 0
+quiet = false

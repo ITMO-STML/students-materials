@@ -1,0 +1,9 @@
+# @package _global_
+defaults:
+  - override /steering: full_eval
+  - _self_
+
+evaluation:
+  backend: asvspoof5
+
+exp_name: full_eval

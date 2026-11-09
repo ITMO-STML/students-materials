@@ -1,0 +1,2 @@
+model_name: facebook/wav2vec2-xls-r-300m
+requires_grad: true

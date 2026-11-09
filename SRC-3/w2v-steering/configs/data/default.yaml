@@ -1,0 +1,12 @@
+defaults:
+  - /augmentation@augmentation: default
+  - _self_
+
+_target_: src.data.datamodule.AudioData
+root: /mnt/shared_ru.ml.SZ-2_000049/antispoofing_datasets/asvspoof5
+batch_size: 64
+num_workers: 8
+pin_memory: true
+model_name: ${model.wav2vec2.model_name}
+num_samples: 64600
+limit: null

@@ -1,0 +1,12 @@
+# @package _global_
+defaults:
+  - override /steering: full_eval
+  - _self_
+
+evaluation:
+  backend: asvspoof5_worker
+  run_directory: null
+  devices: []
+  worker_index: 0
+
+exp_name: asvspoof5_worker

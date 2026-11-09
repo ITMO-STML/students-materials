@@ -1,0 +1,13 @@
+# @package _global_
+defaults:
+  - override /steering: elevenlabs_speaker
+  - _self_
+
+evaluation:
+  backend: speaker
+
+exp_name: w2v_oy_wildspoof_v3
+
+steering:
+  stage: evaluate
+  evaluation_dataset: wildspoof_2026

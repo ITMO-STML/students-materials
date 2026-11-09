@@ -1,0 +1,82 @@
+# SCM syntax highlighting & preventing 3-way merges
+pixi.lock merge=binary linguist-language=YAML linguist-generated=true -diff
+uv.lock merge=binary linguist-language=TOML linguist-generated=true -diff
+
+# doesn't count ipynb files in git statistics
+*.ipynb linguist-vendored
+
+# git files
+.gitattributes export-ignore
+.gitignore     export-ignore
+.gitkeep       export-ignore
+
+# shell scripts
+*.bash     text eol=lf
+*.fish     text eol=lf
+*.ksh      text eol=lf
+*.sh       text eol=lf
+*.zsh      text eol=lf
+
+# windows scripts
+*.bat      text eol=crlf
+*.cmd      text eol=crlf
+*.ps1      text eol=crlf
+
+# binary files
+*.png      binary
+*.jpg      binary
+*.jpeg     binary
+*.gif      binary
+*.tif      binary
+*.tiff     binary
+*.ico      binary
+*.svg      binary
+*.db       binary
+*.p        binary
+*.pkl      binary
+*.pickle   binary
+*.pyc      binary export-ignore
+*.pyo      binary export-ignore
+*.pyd      binary
+
+# docs
+*.bibtex   text diff=bibtex
+*.doc      binary
+*.DOC      binary
+*.docx     binary
+*.DOCX     binary
+*.dot      binary
+*.DOT      binary
+*.pdf      binary
+*.PDF      binary
+*.rtf      binary
+*.RTF      binary
+*.md       text diff=markdown
+*.mdx      text diff=markdown
+*.tex      text diff=tex
+*.ipynb    text eol=lf
+
+# text files
+*.adoc     text
+*.textile  text
+*.mustache text
+*.csv      text eol=crlf
+*.tab      text
+*.tsv      text
+*.txt      text
+*.sql      text eol=lf
+
+# python
+*.pxd    text diff=python
+*.py     text diff=python
+*.py3    text diff=python
+*.pyw    text diff=python
+*.pyx    text diff=python
+*.pyz    text diff=python
+*.pyi    text diff=python
+
+# common project files
+LICENSE   text
+README.*  text
+CHANGELOG text
+Makefile  text eol=lf

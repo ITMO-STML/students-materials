@@ -1,0 +1,21 @@
+exp_name: alm_sasv_reasoning_20260701_v1
+source_root: /mnt/shared_ru.ml.SZ-2_000049/ekushnir/sasv/LALMs_for_SASV
+source_revision: 67b83737db38c4fa5af8bd225a95c2210cfe525c
+checkpoint: /mnt/shared_ru.ml.SZ-2_000049/ekushnir/sasv/rl_antiskuf/unified_training/outputs/07_01-fixed_reasoning/run_2026_07_01_13_27/checkpoints/sft_latest.pt
+checkpoint_config: /mnt/shared_ru.ml.SZ-2_000049/ekushnir/sasv/rl_antiskuf/unified_training/outputs/07_01-fixed_reasoning/run_2026_07_01_13_27/config_resolved.yaml
+test_config: /mnt/shared_ru.ml.SZ-2_000049/ekushnir/sasv/LALMs_for_SASV/outputs/salmon_hard_label_2/run_2026_10_04_15_48/config_resolved.yaml
+dataset_root: /home/jovyan/mnt_shared/antispoofing_datasets/asvspoof5
+pairs_root: /home/jovyan/mnt_shared/antispoofing_datasets/sasv_meta/Pairs
+output: logs/runs/2026-10-13/alm_sasv_reasoning_v1
+device: cuda:2
+seed: 42
+batch_size: 16
+chunk_size: 32
+max_new_tokens: 2048
+layers: [8, 16, 24]
+strengths: [-0.5, 0.5]
+support_per_class: 64
+tune_per_class: 32
+known_spoof_records: 128
+dev_guard_records: 192
+dev_baseline_records: 2048

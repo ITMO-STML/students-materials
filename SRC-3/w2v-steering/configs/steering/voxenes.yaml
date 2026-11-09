@@ -1,0 +1,10 @@
+defaults:
+  - external_eval
+  - _self_
+
+external_dataset: voxenes_original_english
+external_root: /mnt/shared_ru.ml.SZ-2_000049/antispoofing_datasets/voxenes/voxenes-2026
+archive_path: /mnt/shared_ru.ml.SZ-2_000049/antispoofing_datasets/voxenes/voxenes-2026.zip
+expected_recordings: 4000
+include_oy: true
+adaptation_run: logs/runs/2026-10-18/w2v_oy_steering_v3

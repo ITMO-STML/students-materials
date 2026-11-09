@@ -1,0 +1,18 @@
+defaults:
+  - external_eval
+  - _self_
+
+stage: fit
+speaker: OY
+layers: [6, 12, 18]
+strengths: [0.0, 0.25, 0.5, 1.0]
+support_spoof: 64
+tune_spoof: 32
+bonafide_per_split: 32
+known_per_class: 128
+source_external_run: logs/runs/2026-10-18/w2v_elevenlabs_transfer
+adaptation_run: logs/runs/2026-10-18/w2v_oy_steering_v3
+evaluation_dataset: elevenlabs
+baseline_elevenlabs_run: logs/runs/2026-10-18/w2v_elevenlabs_transfer
+baseline_wildspoof_run: logs/runs/2026-10-18/w2v_wildspoof2026_transfer
+baseline_asvspoof_run: logs/runs/2026-10-09/full_eval_15-17-10

@@ -1,0 +1,13 @@
+# @package _global_
+defaults:
+  - override /steering: retention_a21
+  - _self_
+
+evaluation:
+  backend: retention
+  adaptation_run: ???
+  selection: guarded # guarded | best_a21
+  cohort: test # test | dev | asvspoof5_full | external
+  manifest_run: null # Existing completed external evaluation with manifest.json.
+
+exp_name: w2v_retention_a21_eval

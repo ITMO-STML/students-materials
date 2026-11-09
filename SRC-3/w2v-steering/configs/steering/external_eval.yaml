@@ -1,0 +1,10 @@
+defaults:
+  - full_eval
+  - _self_
+
+external_dataset: elevenlabs
+external_root: /home/jovyan/mnt_shared/antispoofing_datasets/data_airi
+verified_full_eval: logs/runs/2026-10-09/full_eval_15-17-10
+prepare_only: false
+chunk_size: 256
+smoke_per_attack: 2

@@ -1,0 +1,6 @@
+# @package _global_
+
+evaluation:
+  backend: checkpoint
+
+exp_name: checkpoint_eval

@@ -1,0 +1,9 @@
+# @package _global_
+defaults:
+  - override /steering: mlaad
+  - _self_
+
+evaluation:
+  backend: mlaad
+
+exp_name: w2v_mlaad_english_a21_v1

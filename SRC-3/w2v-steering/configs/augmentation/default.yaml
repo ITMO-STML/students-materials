@@ -1,0 +1,58 @@
+_target_: torch_audiomentations.Compose
+p: 1.0
+output_type: &output_type tensor
+transforms:
+  - _target_: torch_audiomentations.PitchShift
+    min_transpose_semitones: -4.0
+    max_transpose_semitones: 4.0
+    p: 0.5
+    sample_rate: &sample_rate 16000
+    output_type: *output_type
+  # White noise: flat spectrum (f_decay = 0).
+  - _target_: torch_audiomentations.AddColoredNoise
+    min_snr_in_db: 10.0
+    max_snr_in_db: 30.0
+    min_f_decay: 0.0
+    max_f_decay: 0.0
+    p: 0.3
+    sample_rate: *sample_rate
+    output_type: *output_type
+  # Blue noise: energy rises with frequency (f_decay = -1).
+  - _target_: torch_audiomentations.AddColoredNoise
+    min_snr_in_db: 10.0
+    max_snr_in_db: 30.0
+    min_f_decay: -1.0
+    max_f_decay: -1.0
+    p: 0.3
+    sample_rate: *sample_rate
+    output_type: *output_type
+  # Violet noise: energy rises faster with frequency (f_decay = -2).
+  - _target_: torch_audiomentations.AddColoredNoise
+    min_snr_in_db: 10.0
+    max_snr_in_db: 30.0
+    min_f_decay: -2.0
+    max_f_decay: -2.0
+    p: 0.3
+    sample_rate: *sample_rate
+    output_type: *output_type
+  # Pink noise: energy falls with frequency (f_decay = 1).
+  - _target_: torch_audiomentations.AddColoredNoise
+    min_snr_in_db: 10.0
+    max_snr_in_db: 30.0
+    min_f_decay: 1.0
+    max_f_decay: 1.0
+    p: 0.3
+    sample_rate: *sample_rate
+    output_type: *output_type
+  - _target_: torch_audiomentations.HighPassFilter
+    min_cutoff_freq: 20.0
+    max_cutoff_freq: 2400.0
+    p: 0.45
+    sample_rate: *sample_rate
+    output_type: *output_type
+  - _target_: torch_audiomentations.LowPassFilter
+    min_cutoff_freq: 150.0
+    max_cutoff_freq: 7500.0
+    p: 0.45
+    sample_rate: *sample_rate
+    output_type: *output_type

@@ -1,0 +1,7 @@
+reference_run: logs/runs/2026-10-10/alm_steering_pilot_v1
+epochs: 5
+learning_rate: 0.00001
+weight_decay: 0.01
+effective_batch: 8
+microbatch: 2
+wait_seconds: 21600
